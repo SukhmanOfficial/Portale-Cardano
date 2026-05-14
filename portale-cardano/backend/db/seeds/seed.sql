@@ -3,7 +3,7 @@
 -- Sistema Cardano Day — ITIS G. Cardano, Pavia
 --
 -- Eseguire DOPO le migration 001, 002, 003
--- ATTENZIONE: questo file resetta i dati esistenti
+-- NOTA: scuole e comuni NON vengono mai svuotate (dati permanenti)
 -- ============================================================
 
 USE cardano_day;
@@ -21,16 +21,14 @@ TRUNCATE TABLE turni;
 TRUNCATE TABLE richieste_ruolo;
 TRUNCATE TABLE figli;
 TRUNCATE TABLE eventi;
-TRUNCATE TABLE scuole;
-TRUNCATE TABLE comuni;
 TRUNCATE TABLE utenti;
+-- scuole e comuni NON vengono svuotate: sono dati di riferimento permanenti
 
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ============================================================
 -- UTENTI
 -- Password per tutti: "Password1!" → hash bcrypt rounds=10
--- Hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
 -- ============================================================
 INSERT INTO utenti (id, nome, cognome, email, password, indirizzo, comune, cap, cellulare, ruolo, verificato) VALUES
 
@@ -275,30 +273,30 @@ INSERT INTO iscrizioni_gruppi (id_iscrizione, id_gruppo) VALUES
 
 
 -- ============================================================
--- SCUOLE MEDIE (campione province PV, LO, MI)
+-- SCUOLE MEDIE (dati permanenti — INSERT IGNORE per sicurezza)
 -- ============================================================
-INSERT INTO scuole (nome, comune, provincia) VALUES
-('SMS G. Mazzini',                  'Pavia',        'PV'),
-('SMS A. Volta',                    'Voghera',      'PV'),
-('SMS C. Darwin',                   'Pavia',        'PV'),
-('SMS L. Da Vinci',                 'Lodi',         'LO'),
-('SMS Cavour',                      'Vigevano',     'PV'),
-('SMS G. Pascoli',                  'Mortara',      'PV'),
-('SMS E. Fermi',                    'Pavia',        'PV'),
-('SMS A. Manzoni',                  'Abbiategrasso','MI'),
-('SMS Don Milani',                  'Voghera',      'PV'),
-('SMS Giusti',                      'Vigevano',     'PV'),
-('IC Comprensivo Bereguardo',       'Bereguardo',   'PV'),
-('SMS Foscolo',                     'Lodi',         'LO'),
-('SMS Galilei',                     'Pavia',        'PV'),
-('SMS Battisti',                    'Certosa di Pavia', 'PV'),
-('SMS Pavese',                      'Pavia',        'PV');
+INSERT IGNORE INTO scuole (nome, comune, provincia) VALUES
+('SMS G. Mazzini',                  'Pavia',             'PV'),
+('SMS A. Volta',                    'Voghera',           'PV'),
+('SMS C. Darwin',                   'Pavia',             'PV'),
+('SMS L. Da Vinci',                 'Lodi',              'LO'),
+('SMS Cavour',                      'Vigevano',          'PV'),
+('SMS G. Pascoli',                  'Mortara',           'PV'),
+('SMS E. Fermi',                    'Pavia',             'PV'),
+('SMS A. Manzoni',                  'Abbiategrasso',     'MI'),
+('SMS Don Milani',                  'Voghera',           'PV'),
+('SMS Giusti',                      'Vigevano',          'PV'),
+('IC Comprensivo Bereguardo',       'Bereguardo',        'PV'),
+('SMS Foscolo',                     'Lodi',              'LO'),
+('SMS Galilei',                     'Pavia',             'PV'),
+('SMS Battisti',                    'Certosa di Pavia',  'PV'),
+('SMS Pavese',                      'Pavia',             'PV');
 
 
 -- ============================================================
--- COMUNI (campione Lombardia — più usati nella zona)
+-- COMUNI (dati permanenti — INSERT IGNORE per sicurezza)
 -- ============================================================
-INSERT INTO comuni (nome_comune, provincia, cap, regione) VALUES
+INSERT IGNORE INTO comuni (nome_comune, provincia, cap, regione) VALUES
 ('Pavia',               'PV', '27100',           'Lombardia'),
 ('Voghera',             'PV', '27058',           'Lombardia'),
 ('Vigevano',            'PV', '27029',           'Lombardia'),

@@ -174,19 +174,20 @@ CREATE TABLE IF NOT EXISTS percorsi_open_day (
 
 -- ============================================================
 -- TABELLA: iscrizioni
--- Una riga per ogni figlio iscritto a un evento
+-- Una riga per ogni figlio iscritto a un evento.
+-- Le 4 firme QR sono colonne DATETIME separate.
 -- ============================================================
 CREATE TABLE IF NOT EXISTS iscrizioni (
     id              INT             NOT NULL AUTO_INCREMENT,
     id_figlio       INT             NOT NULL,
     id_evento       INT             NOT NULL,
-    id_percorso     INT             NULL COMMENT 'FK percorsi_open_day — NULL per Cardano Day',
-    qr_code         VARCHAR(64)     NOT NULL COMMENT 'Hex 32 char — generato da Node.js',
+    id_percorso     INT             NULL     COMMENT 'Solo Open Day — NULL per Cardano Day',
+    qr_code         VARCHAR(64)     NOT NULL COMMENT 'SHA-256 hex — UNIQUE',
     stato           ENUM(
                         'confermata',
-                        'annullata'
-                    )               NOT NULL DEFAULT 'confermata',
-    -- Le 4 firme QR (solo Cardano Day)
+                        'annullata',
+                        'in_attesa'
+                    )               NOT NULL DEFAULT 'in_attesa',
     firma_entrata   DATETIME        NULL COMMENT 'Timestamp firma 1 — ingresso scuola',
     firma_lab1      DATETIME        NULL COMMENT 'Timestamp firma 2 — Lab turno 1',
     firma_lab2      DATETIME        NULL COMMENT 'Timestamp firma 3 — Lab turno 2 (NULL se 1 solo lab)',
@@ -196,6 +197,7 @@ CREATE TABLE IF NOT EXISTS iscrizioni (
 
     PRIMARY KEY (id),
     UNIQUE KEY uq_iscrizioni_qr (qr_code),
+    UNIQUE KEY uq_iscr_figlio_evento (id_figlio, id_evento),
     CONSTRAINT fk_iscr_figlio
         FOREIGN KEY (id_figlio) REFERENCES figli(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -205,7 +207,6 @@ CREATE TABLE IF NOT EXISTS iscrizioni (
     CONSTRAINT fk_iscr_percorso
         FOREIGN KEY (id_percorso) REFERENCES percorsi_open_day(id)
         ON DELETE SET NULL ON UPDATE CASCADE,
-    UNIQUE KEY uq_iscr_figlio_evento (id_figlio, id_evento),
     INDEX idx_iscr_evento (id_evento),
     INDEX idx_iscr_figlio (id_figlio),
     INDEX idx_iscr_stato (stato),
@@ -239,7 +240,7 @@ CREATE TABLE IF NOT EXISTS iscrizioni_laboratori (
 -- TABELLA: gruppi
 -- Gruppi di visita.
 -- Open Day: M1-M6, L1-L7, T1-T5
--- Cardano Day: T1-T5
+-- Cardano Day: I1, I2, M1, M2, C1, C2, E1, E2, L1...
 -- ============================================================
 CREATE TABLE IF NOT EXISTS gruppi (
     id          INT             NOT NULL AUTO_INCREMENT,
@@ -306,7 +307,8 @@ CREATE TABLE IF NOT EXISTS richieste_ruolo (
 
 -- ============================================================
 -- TABELLA: scuole
--- Elenco scuole medie per autocomplete
+-- Tabella di riferimento permanente — NON svuotare mai.
+-- Elenco scuole medie per autocomplete.
 -- ============================================================
 CREATE TABLE IF NOT EXISTS scuole (
     id          INT             NOT NULL AUTO_INCREMENT,
@@ -324,7 +326,8 @@ CREATE TABLE IF NOT EXISTS scuole (
 
 -- ============================================================
 -- TABELLA: comuni
--- Elenco comuni italiani per autocomplete indirizzo
+-- Tabella di riferimento permanente — NON svuotare mai.
+-- Elenco comuni italiani per autocomplete indirizzo.
 -- ============================================================
 CREATE TABLE IF NOT EXISTS comuni (
     id              INT             NOT NULL AUTO_INCREMENT,
@@ -342,7 +345,7 @@ CREATE TABLE IF NOT EXISTS comuni (
 
 -- ============================================================
 -- TABELLA: audit_log
--- Log di tutte le operazioni sensibili
+-- Log di tutte le operazioni sensibili — senza dati personali
 -- ============================================================
 CREATE TABLE IF NOT EXISTS audit_log (
     id          INT             NOT NULL AUTO_INCREMENT,

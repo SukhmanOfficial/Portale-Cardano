@@ -1,5 +1,6 @@
 -- ============================================================
 -- Migration 003 — Vincoli aggiuntivi e check
+-- Da eseguire dopo 002_indexes.sql
 -- ============================================================
 
 USE cardano_day;
