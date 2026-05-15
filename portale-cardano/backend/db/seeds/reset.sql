@@ -1,6 +1,7 @@
 -- ============================================================
 -- RESET — Svuota tutto e ripopola con i seed
 -- ATTENZIONE: elimina TUTTI i dati esistenti
+-- NOTA: scuole e comuni NON vengono mai svuotate (dati permanenti)
 -- ============================================================
 
 USE cardano_day;
@@ -18,9 +19,8 @@ TRUNCATE TABLE turni;
 TRUNCATE TABLE richieste_ruolo;
 TRUNCATE TABLE figli;
 TRUNCATE TABLE eventi;
--- TRUNCATE TABLE scuole;
--- TRUNCATE TABLE comuni;
--- TRUNCATE TABLE utenti;
+TRUNCATE TABLE utenti;
+-- scuole e comuni NON vengono svuotate: sono dati di riferimento permanenti
 
 SET FOREIGN_KEY_CHECKS = 1;
 

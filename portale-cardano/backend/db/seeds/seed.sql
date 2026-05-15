@@ -29,6 +29,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- ============================================================
 -- UTENTI
 -- Password per tutti: "Password1!" → hash bcrypt rounds=10
+-- Hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
 -- ============================================================
 INSERT INTO utenti (id, nome, cognome, email, password, indirizzo, comune, cap, cellulare, ruolo, verificato) VALUES
 
