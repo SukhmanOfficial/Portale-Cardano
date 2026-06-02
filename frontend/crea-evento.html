@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Crea Evento — ITIS "G. Cardano", Pavia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/segreteria.css" />
+  <link rel="stylesheet" href="css/crea-evento.css" />
+</head>
+<body>
+
+<div class="seg-layout">
+
+  <!-- =========================================================
+       TOPBAR
+       ========================================================= -->
+  <header class="seg-topbar">
+    <div class="seg-topbar__left">
+      <button id="sidebar-toggle" style="display:none;background:none;border:none;cursor:pointer;padding:var(--space-2);">
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+      </button>
+      <a href="segreteria.html" style="display:flex;align-items:center;gap:var(--space-3);">
+        <div class="itis-logo itis-logo--sm">
+          <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano"' />
+        </div>
+        <div class="seg-topbar__title">
+          <span class="seg-topbar__name">ITIS "G. Cardano" — Pavia</span>
+          <span class="seg-topbar__sub">Pannello Segreteria</span>
+        </div>
+      </a>
+    </div>
+    <div class="seg-topbar__right">
+      <span class="seg-role-badge">Segreteria</span>
+      <div class="seg-topbar__avatar">GF</div>
+      <span class="seg-topbar__user-name">Giulia Ferrari</span>
+      <button class="seg-topbar__logout"
+        onclick="if(confirm('Vuoi uscire?'))window.location.href='accesso-personale.html'">
+        Esci
+      </button>
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+  <aside class="seg-sidebar">
+    <div class="seg-sidebar__label">Gestione</div>
+    <div class="seg-sidebar__nav">
+      <a class="seg-nav-link" href="segreteria.html"><span class="seg-nav-link__icon">📊</span> Dashboard</a>
+      <a class="seg-nav-link seg-nav-link--active" href="segreteria.html"><span class="seg-nav-link__icon">📅</span> Eventi</a>
+      <a class="seg-nav-link" href="segreteria.html"><span class="seg-nav-link__icon">📋</span> Iscrizioni</a>
+      <a class="seg-nav-link" href="gestione-utenti.html"><span class="seg-nav-link__icon">👥</span> Utenti</a>
+      <a class="seg-nav-link" href="gestione-utenti.html"><span class="seg-nav-link__icon">✅</span> Approvazioni</a>
+    </div>
+    <div class="seg-sidebar__label">Strumenti</div>
+    <div class="seg-sidebar__nav">
+      <a class="seg-nav-link" href="divisione-gruppi.html"><span class="seg-nav-link__icon">🔀</span> Dividi gruppi</a>
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">📊</span> Export Excel</a>
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">🔔</span> Notifiche</a>
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">🏫</span> Scuole medie</a>
+    </div>
+    <div class="seg-sidebar__label">Sistema</div>
+    <div class="seg-sidebar__nav">
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">⚙️</span> Impostazioni</a>
+    </div>
+  </aside>
+
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+  <main class="seg-main">
+
+    <!-- Breadcrumb -->
+    <nav class="ev-breadcrumb" aria-label="Percorso">
+      <a href="segreteria.html">Dashboard</a>
+      <span class="ev-breadcrumb__sep" aria-hidden="true">›</span>
+      <a href="segreteria.html">Eventi</a>
+      <span class="ev-breadcrumb__sep" aria-hidden="true">›</span>
+      <span>Nuovo evento</span>
+    </nav>
+
+    <h1 class="seg-page-title" style="margin-bottom:var(--space-6);">
+      Crea nuovo <em>evento</em>
+    </h1>
+
+    <!-- Layout form + anteprima -->
+    <div class="crea-layout">
+
+      <!-- Colonna form -->
+      <div>
+
+        <!-- =============================================
+             TIPO EVENTO
+             ============================================= -->
+        <div class="form-card-ev">
+          <div class="form-card-ev__title">Tipo evento</div>
+
+          <div class="tipo-tabs" role="tablist" aria-label="Tipo evento">
+            <button class="tipo-tab" data-tipo="open_day"
+              onclick="setTipo('open_day')" role="tab">
+              🎓 Open Day
+            </button>
+            <button class="tipo-tab tipo-tab--active" data-tipo="cardano_day"
+              onclick="setTipo('cardano_day')" role="tab">
+              🔬 Cardano Day
+            </button>
+          </div>
+
+          <!-- Titolo + Data -->
+          <div class="ev-form-row">
+            <div class="ev-form-group">
+              <label class="ev-form-label" for="ev-titolo">Titolo evento *</label>
+              <input type="text" id="ev-titolo" class="ev-form-input"
+                placeholder="Cardano Day — Novembre 2026"
+                value="Cardano Day — Novembre 2026" />
+            </div>
+            <div class="ev-form-group">
+              <label class="ev-form-label" for="ev-data">Data evento *</label>
+              <input type="date" id="ev-data" class="ev-form-input" value="2026-11-24" />
+            </div>
+          </div>
+
+          <!-- Descrizione -->
+          <div class="ev-form-group">
+            <label class="ev-form-label" for="ev-descrizione">Descrizione</label>
+            <textarea id="ev-descrizione" class="ev-form-textarea"
+              placeholder="Giornata di orientamento con visita ai laboratori...">Giornata di orientamento con visita ai laboratori dell'ITIS G. Cardano di Pavia. Gli studenti potranno scegliere fino a 2 laboratori da visitare.</textarea>
+          </div>
+
+          <!-- Posti + Pubblicato -->
+          <div class="ev-form-row">
+            <div class="ev-form-group">
+              <label class="ev-form-label" for="ev-posti">Posti massimi *</label>
+              <input type="number" id="ev-posti" class="ev-form-input"
+                placeholder="300" value="300" min="1" />
+            </div>
+            <div class="ev-form-group">
+              <label class="ev-form-label" for="ev-pubblicato">Evento pubblicato</label>
+              <select id="ev-pubblicato" class="ev-form-select">
+                <option value="si">✓ Sì — visibile al pubblico</option>
+                <option value="no">✕ No — bozza</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- =============================================
+             PERIODO ISCRIZIONI
+             ============================================= -->
+        <div class="form-card-ev">
+          <div class="form-card-ev__title">📅 Periodo iscrizioni</div>
+
+          <div class="ev-form-row">
+            <div class="ev-form-group">
+              <label class="ev-form-label" for="ev-apertura">Apertura iscrizioni *</label>
+              <input type="datetime-local" id="ev-apertura" class="ev-form-input"
+                value="2026-11-01T08:00" />
+            </div>
+            <div class="ev-form-group">
+              <label class="ev-form-label" for="ev-chiusura">Chiusura iscrizioni *</label>
+              <input type="datetime-local" id="ev-chiusura" class="ev-form-input"
+                value="2026-11-16T23:59" />
+            </div>
+          </div>
+
+          <!-- Turni — solo Cardano Day -->
+          <div id="turni-section" class="turni-section visible">
+            <div class="ev-form-row">
+              <div class="ev-form-group">
+                <label class="ev-form-label" for="ev-inizio-t1">Inizio Turno 1 *</label>
+                <input type="time" id="ev-inizio-t1" class="ev-form-input" value="08:30" />
+              </div>
+              <div class="ev-form-group">
+                <label class="ev-form-label" for="ev-fine-t1">Fine Turno 1 *</label>
+                <input type="time" id="ev-fine-t1" class="ev-form-input" value="10:30" />
+              </div>
+            </div>
+            <div class="ev-form-row">
+              <div class="ev-form-group">
+                <label class="ev-form-label" for="ev-inizio-t2">Inizio Turno 2 *</label>
+                <input type="time" id="ev-inizio-t2" class="ev-form-input" value="11:00" />
+              </div>
+              <div class="ev-form-group">
+                <label class="ev-form-label" for="ev-fine-t2">Fine Turno 2 *</label>
+                <input type="time" id="ev-fine-t2" class="ev-form-input" value="13:00" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- =============================================
+             CONFIGURAZIONE LABORATORI — solo Cardano Day
+             ============================================= -->
+        <div id="lab-section" class="form-card-ev">
+          <div class="form-card-ev__title">🔬 Configurazione laboratori e aule</div>
+
+          <div id="lab-list">
+            <!-- Popolato da JS -->
+          </div>
+
+          <button class="btn-add-lab" onclick="aggiungiLaboratorio()">
+            + Aggiungi laboratorio
+          </button>
+        </div>
+
+      </div><!-- /colonna form -->
+
+
+      <!-- =============================================
+           SIDEBAR ANTEPRIMA
+           ============================================= -->
+      <aside>
+        <div class="anteprima-card">
+
+          <div class="anteprima-card__eyebrow">
+            👁 Anteprima pubblica
+          </div>
+          <div class="anteprima-card__sub">Come apparirà nella home page</div>
+
+          <!-- Mini preview -->
+          <div class="ev-preview">
+            <div class="ev-preview__header">
+              <div class="ev-preview__date">
+                <span class="ev-preview__date-day" id="prev-day">24</span>
+                <span class="ev-preview__date-month" id="prev-month">NOV</span>
+              </div>
+              <div>
+                <div class="ev-preview__name" id="prev-name">Cardano Day — Novembre 2026</div>
+                <div class="ev-preview__loc">ITIS "G. Cardano", Pavia</div>
+                <div class="ev-preview__posti" id="prev-posti">● 300 posti disponibili</div>
+              </div>
+            </div>
+
+            <div id="prev-tags" class="ev-preview__tags">
+              <!-- JS -->
+            </div>
+
+            <div class="ev-preview__dates">
+              🕐 <span id="prev-apertura">Iscrizioni 01/11/2026 …</span>
+              <span id="prev-chiusura">… 16/11/2026</span>
+            </div>
+          </div>
+
+          <!-- Riepilogo config -->
+          <div id="riepilogo-config"><!-- JS --></div>
+
+          <!-- Azioni -->
+          <button id="btn-pubblica" class="btn-pubblica" onclick="pubblicaEvento()">
+            ✓ Pubblica evento
+          </button>
+          <button id="btn-bozza" class="btn-bozza" onclick="salvaBozza()">
+            💾 Salva come bozza
+          </button>
+
+        </div>
+      </aside>
+
+    </div><!-- /crea-layout -->
+
+  </main>
+</div><!-- /seg-layout -->
+
+<script src="js/config.js"></script>
+<script src="js/crea-evento.js"></script>
+</body>
+</html>
