@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Pannello Segreteria — ITIS "G. Cardano", Pavia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/segreteria.css" />
+</head>
+<body>
+
+<div class="seg-layout">
+
+  <!-- =========================================================
+       TOPBAR
+       ========================================================= -->
+  <header class="seg-topbar" role="banner">
+
+    <div class="seg-topbar__left">
+      <!-- Hamburger mobile -->
+      <button id="sidebar-toggle" aria-label="Apri menu"
+        style="display:none;background:none;border:none;cursor:pointer;padding:var(--space-2);margin-right:var(--space-1);">
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+      </button>
+
+      <a href="accesso-personale.html" aria-label="ITIS G. Cardano — Home personale"
+        style="display:flex;align-items:center;gap:var(--space-3);">
+        <div class="itis-logo itis-logo--sm">
+          <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+        </div>
+        <div class="seg-topbar__title">
+          <span class="seg-topbar__name">ITIS "G. Cardano" — Pavia</span>
+          <span class="seg-topbar__sub">Pannello Segreteria</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="seg-topbar__right">
+      <span class="seg-role-badge">Segreteria</span>
+      <div class="seg-topbar__avatar" id="topbar-avatar" aria-hidden="true">GF</div>
+      <span class="seg-topbar__user-name" id="topbar-user-name">Giulia Ferrari</span>
+      <button class="seg-topbar__logout"
+        onclick="if(confirm('Vuoi uscire?'))window.location.href='accesso-personale.html'">
+        Esci
+      </button>
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+  <aside class="seg-sidebar" role="navigation" aria-label="Menu segreteria">
+
+    <div class="seg-sidebar__label">Gestione</div>
+    <div class="seg-sidebar__nav">
+      <button class="seg-nav-link seg-nav-link--active" data-nav="dashboard">
+        <span class="seg-nav-link__icon" aria-hidden="true">📊</span> Dashboard
+      </button>
+      <button class="seg-nav-link" data-nav="eventi">
+        <span class="seg-nav-link__icon" aria-hidden="true">📅</span> Eventi
+      </button>
+      <button class="seg-nav-link" data-nav="iscrizioni">
+        <span class="seg-nav-link__icon" aria-hidden="true">📋</span> Iscrizioni
+      </button>
+      <button class="seg-nav-link" data-nav="utenti">
+        <span class="seg-nav-link__icon" aria-hidden="true">👥</span> Utenti
+        <span class="seg-nav-badge">3</span>
+      </button>
+      <button class="seg-nav-link" data-nav="approvazioni">
+        <span class="seg-nav-link__icon" aria-hidden="true">✅</span> Approvazioni
+        <span class="seg-nav-badge">2</span>
+      </button>
+    </div>
+
+    <div class="seg-sidebar__label">Strumenti</div>
+    <div class="seg-sidebar__nav">
+      <button class="seg-nav-link" data-nav="divisione">
+        <span class="seg-nav-link__icon" aria-hidden="true">🔀</span> Dividi gruppi
+      </button>
+      <button class="seg-nav-link" onclick="alert('Download Excel globale')">
+        <span class="seg-nav-link__icon" aria-hidden="true">📊</span> Export Excel
+      </button>
+      <button class="seg-nav-link" data-nav="notifiche">
+        <span class="seg-nav-link__icon" aria-hidden="true">🔔</span> Notifiche
+      </button>
+      <button class="seg-nav-link" data-nav="scuole">
+        <span class="seg-nav-link__icon" aria-hidden="true">🏫</span> Scuole medie
+      </button>
+    </div>
+
+    <div class="seg-sidebar__label">Sistema</div>
+    <div class="seg-sidebar__nav">
+      <button class="seg-nav-link" data-nav="impostazioni">
+        <span class="seg-nav-link__icon" aria-hidden="true">⚙️</span> Impostazioni
+      </button>
+    </div>
+
+  </aside>
+
+
+  <!-- =========================================================
+       CONTENUTO PRINCIPALE
+       ========================================================= -->
+  <main class="seg-main" id="seg-main" role="main">
+
+
+    <!-- =====================================================
+         SEZIONE: DASHBOARD
+         ===================================================== -->
+    <div data-section="dashboard">
+
+      <!-- Header pagina -->
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Dashboard <em>Segreteria</em></h1>
+        <div class="seg-page-actions">
+          <button class="seg-btn-secondary" onclick="alert('Export Excel globale')">
+            📊 Export Excel
+          </button>
+          <button class="seg-btn-primary" onclick="window.location.href='crea-evento.html'">
+            + Crea evento
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI -->
+      <div id="kpi-grid" class="seg-kpi-grid" aria-label="Statistiche generali">
+        <!-- JS -->
+      </div>
+
+      <!-- Tabella eventi -->
+      <div class="seg-card">
+        <div class="seg-card__header">
+          <h2 class="seg-card__title">Gestione eventi</h2>
+          <button class="seg-btn-primary" onclick="window.location.href='crea-evento.html'">
+            + Nuovo evento
+          </button>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="seg-table" aria-label="Lista eventi">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Data evento</th>
+                <th>Iscrizioni</th>
+                <th>Stato iscrizioni</th>
+                <th>Gruppi</th>
+                <th>Pubblicato</th>
+                <th>Azioni</th>
+              </tr>
+            </thead>
+            <tbody id="eventi-tbody">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Griglia: approvazioni + dividi gruppi -->
+      <div class="seg-bottom-grid">
+
+        <!-- Approvazioni in attesa -->
+        <div class="seg-card" style="margin-bottom:0">
+          <div class="seg-card__header">
+            <h2 class="seg-card__title">Approvazioni in attesa</h2>
+            <span id="approv-count" class="approv-count-badge">2 richieste</span>
+          </div>
+          <div id="approv-list"><!-- JS --></div>
+        </div>
+
+        <!-- Dividi gruppi widget -->
+        <div class="dividi-card">
+          <div class="dividi-card__header">
+            <span style="font-size:1.2rem;" aria-hidden="true">🔀</span>
+            <h2 class="dividi-card__title">Dividi gruppi</h2>
+          </div>
+
+          <!-- Dropdown custom (il select nativo non si stila bene su sfondo scuro) -->
+          <div class="dividi-dropdown" id="dividi-dropdown" role="combobox" aria-expanded="false" aria-label="Seleziona evento">
+            <div class="dividi-dropdown__selected" id="dividi-dropdown-selected" onclick="toggleDividiDropdown()">
+              <span id="dividi-dropdown-label">Open Day — 18 Novembre 2026</span>
+              <svg class="dividi-dropdown__arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="dividi-dropdown__menu" id="dividi-dropdown-menu">
+              <div class="dividi-dropdown__item dividi-dropdown__item--active" data-value="1" onclick="selectDividiEvento(this)">
+                <span class="dividi-dropdown__item-type dividi-dropdown__item-type--openday">Open Day</span>
+                18 Novembre 2026
+              </div>
+              <div class="dividi-dropdown__item" data-value="2" onclick="selectDividiEvento(this)">
+                <span class="dividi-dropdown__item-type dividi-dropdown__item-type--cardano">Cardano Day</span>
+                24 Novembre 2026
+              </div>
+              <div class="dividi-dropdown__item" data-value="3" onclick="selectDividiEvento(this)">
+                <span class="dividi-dropdown__item-type dividi-dropdown__item-type--openday">Open Day</span>
+                18 Dicembre 2026
+              </div>
+              <div class="dividi-dropdown__item" data-value="4" onclick="selectDividiEvento(this)">
+                <span class="dividi-dropdown__item-type dividi-dropdown__item-type--cardano">Cardano Day</span>
+                13 Gennaio 2027
+              </div>
+            </div>
+          </div>
+
+          <div class="dividi-stats" aria-label="Statistiche evento selezionato">
+            <div class="dividi-stat">
+              <div class="dividi-stat__num">87</div>
+              <div class="dividi-stat__label">Iscritti</div>
+            </div>
+            <div class="dividi-stat">
+              <div class="dividi-stat__num">3</div>
+              <div class="dividi-stat__label">Percorsi</div>
+            </div>
+            <div class="dividi-stat">
+              <div class="dividi-stat__num">0</div>
+              <div class="dividi-stat__label">Gruppi creati</div>
+            </div>
+          </div>
+
+          <div id="dividi-percorsi" class="dividi-percorsi"><!-- JS --></div>
+
+          <button id="btn-esegui-divisione" class="btn-dividi">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-label">▶ ESEGUI DIVISIONE GRUPPI</span>
+          </button>
+        </div>
+
+      </div><!-- /seg-bottom-grid -->
+
+      <!-- Statistiche laboratori -->
+      <div class="seg-card" style="margin-top:var(--space-5)">
+        <div class="seg-card__header">
+          <h2 id="lab-stats-title" class="seg-card__title">Statistiche laboratori</h2>
+          <button class="seg-btn-secondary" onclick="alert('Export .xlsx')">
+            📊 Export .xlsx
+          </button>
+        </div>
+
+        <div class="lab-stats-grid">
+          <div>
+            <div class="lab-stats-turno__title">TURNO 1 — 8:30/10:30</div>
+            <div id="lab-stats-t1"><!-- JS --></div>
+          </div>
+          <div>
+            <div class="lab-stats-turno__title">TURNO 2 — 11:00/13:00</div>
+            <div id="lab-stats-t2"><!-- JS --></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard -->
+
+
+    <!-- =====================================================
+         SEZIONI PLACEHOLDER
+         ===================================================== -->
+
+    <div data-section="eventi" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Gestione <em>eventi</em></h1>
+        <button class="seg-btn-primary" onclick="window.location.href='crea-evento.html'">+ Crea evento</button>
+      </div>
+      <div class="seg-card">
+        <div style="overflow-x:auto;">
+          <table class="seg-table"><thead><tr><th>Tipo</th><th>Data</th><th>Iscrizioni</th><th>Stato</th><th>Gruppi</th><th>Pubblicato</th><th>Azioni</th></tr></thead>
+          <tbody id="eventi-tbody-2"><!-- popolato da JS al click --></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <div data-section="iscrizioni" style="display:none">
+      <div class="seg-page-header"><h1 class="seg-page-title"><em>Iscrizioni</em></h1></div>
+      <div class="seg-card" style="text-align:center;padding:var(--space-12);color:var(--color-text-muted);">
+        Seleziona un evento per visualizzare le iscrizioni.
+      </div>
+    </div>
+
+    <div data-section="utenti" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Gestione <em>utenti</em></h1>
+        <a href="gestione-utenti.html" class="seg-btn-primary">Apri gestione utenti →</a>
+      </div>
+      <div class="seg-card" style="text-align:center;padding:var(--space-10);color:var(--color-text-muted);">
+        <a href="gestione-utenti.html" class="seg-btn-primary">Vai alla pagina Gestione Utenti</a>
+      </div>
+    </div>
+
+    <div data-section="approvazioni" style="display:none">
+      <div class="seg-page-header"><h1 class="seg-page-title"><em>Approvazioni</em> in attesa</h1></div>
+      <div class="seg-card">
+        <div id="approv-list-2"><!-- JS --></div>
+      </div>
+    </div>
+
+    <div data-section="divisione" style="display:none">
+      <div class="seg-page-header"><h1 class="seg-page-title">Dividi <em>gruppi</em></h1></div>
+      <div class="seg-card" style="text-align:center;padding:var(--space-10);color:var(--color-text-muted);">
+        <a href="divisione-gruppi.html" class="seg-btn-primary">Apri divisione gruppi →</a>
+      </div>
+    </div>
+
+    <div data-section="notifiche" style="display:none">
+      <div class="seg-page-header"><h1 class="seg-page-title"><em>Notifiche</em></h1></div>
+      <div class="seg-card" style="text-align:center;padding:var(--space-12);color:var(--color-text-muted);">Sezione in arrivo.</div>
+    </div>
+
+    <div data-section="scuole" style="display:none">
+      <div class="seg-page-header"><h1 class="seg-page-title">Scuole <em>medie</em></h1></div>
+      <div class="seg-card" style="text-align:center;padding:var(--space-12);color:var(--color-text-muted);">Sezione in arrivo.</div>
+    </div>
+
+    <div data-section="impostazioni" style="display:none">
+      <div class="seg-page-header"><h1 class="seg-page-title"><em>Impostazioni</em></h1></div>
+
+      <!-- Anno scolastico -->
+      <div class="seg-card">
+        <div class="seg-card__header">
+          <h2 class="seg-card__title">📅 Anno scolastico</h2>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-4);">
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin-bottom:var(--space-1);">Valore corrente</div>
+            <div id="anno-corrente" style="font-size:var(--text-2xl);font-weight:900;color:var(--color-primary);letter-spacing:-0.02em;">—</div>
+            <div id="anno-tipo" style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px;">—</div>
+          </div>
+        </div>
+
+        <div style="background:var(--color-bg);border-radius:var(--radius-lg);padding:var(--space-5);margin-bottom:var(--space-4);">
+          <div style="font-size:var(--text-sm);font-weight:600;color:var(--color-text);margin-bottom:var(--space-3);">
+            Imposta anno manualmente <span style="font-size:var(--text-xs);font-weight:400;color:var(--color-text-muted);">(lascia vuoto per automatico)</span>
+          </div>
+          <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap;">
+            <input type="text" id="anno-input" placeholder="es. 2027–28"
+              style="padding:var(--space-3) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-base);font-weight:700;width:160px;outline:none;font-family:var(--font-sans);" />
+            <button onclick="salvaAnnoOverride()"
+              style="padding:var(--space-3) var(--space-5);background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:700;cursor:pointer;">
+              ✓ Salva
+            </button>
+            <button onclick="resetAnnoOverride()"
+              style="padding:var(--space-3) var(--space-5);background:none;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:600;color:var(--color-text-secondary);cursor:pointer;">
+              ↺ Reset automatico
+            </button>
+          </div>
+          <div id="anno-feedback" style="margin-top:var(--space-3);font-size:var(--text-sm);display:none;"></div>
+        </div>
+
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.7;">
+          <strong>Calcolo automatico:</strong> da settembre a dicembre usa l'anno corrente/successivo, da gennaio ad agosto usa l'anno precedente/corrente.<br>
+          Esempio: settembre 2026 → <strong>2026–27</strong> · gennaio 2027 → <strong>2026–27</strong> · settembre 2027 → <strong>2027–28</strong>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div><!-- /seg-layout -->
+
+<script src="js/config.js"></script>
+<script src="js/segreteria.js"></script>
+<script>
+  // Sidebar mobile
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('sidebar-toggle');
+    const show = function () { if (toggle) toggle.style.display = window.innerWidth <= 900 ? 'block' : 'none'; };
+    show();
+    window.addEventListener('resize', show);
+  });
+</script>
+</body>
+</html>

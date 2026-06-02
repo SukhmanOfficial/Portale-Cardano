@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sistema di gestione iscrizioni Open Day e Cardano Day — ITIS G. Cardano, Pavia" />
+  <title>Open Day &amp; Cardano Day 2026–27 — ITIS G. Cardano, Pavia</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+  <header id="navbar" class="navbar" role="banner">
+    <div class="container">
+      <div class="navbar__inner">
+
+        <!-- Brand -->
+        <a href="index.html" class="navbar__brand" aria-label="ITIS G. Cardano — Home">
+          <div class="itis-logo itis-logo--sm">
+            <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+          </div>
+          <div class="navbar__brand-text">
+            <span class="navbar__brand-name">ITIS "G. Cardano"</span>
+            <span class="navbar__brand-sub" data-config="ui.navbar_sub"></span>
+          </div>
+        </a>
+
+        <!-- Nav links -->
+        <nav class="navbar__nav" aria-label="Navigazione principale">
+          <a href="#" class="navbar__link navbar__link--active">Home</a>
+          <a href="#eventi" class="navbar__link">Eventi</a>
+          <a href="#come-funziona" class="navbar__link">Come funziona</a>
+          <a href="#contatti" class="navbar__link">Contatti</a>
+        </nav>
+
+        <!-- Azioni -->
+        <div class="navbar__actions">
+          <a href="login.html" class="navbar__btn-login">Accedi</a>
+          <a href="registrazione.html" class="navbar__btn-register">Registrati</a>
+        </div>
+
+        <!-- Hamburger mobile -->
+        <button
+          id="navbar-hamburger"
+          class="navbar__hamburger"
+          aria-label="Apri menu"
+          aria-expanded="false"
+          aria-controls="navbar-mobile-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <nav id="navbar-mobile-menu" class="navbar__mobile-menu" aria-label="Menu mobile">
+      <a href="#" class="navbar__mobile-link">Home</a>
+      <a href="#eventi" class="navbar__mobile-link">Eventi</a>
+      <a href="#come-funziona" class="navbar__mobile-link">Come funziona</a>
+      <a href="#contatti" class="navbar__mobile-link">Contatti</a>
+      <div class="navbar__mobile-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Accedi</a>
+        <a href="registrazione.html" class="btn btn-primary btn-sm">Registrati</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero__inner">
+
+        <div class="hero__content">
+          <!-- Badge iscrizioni aperte -->
+          <div class="hero__badge" aria-label="Iscrizioni attualmente aperte">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            Iscrizioni aperte
+          </div>
+
+          <!-- Titolo -->
+          <h1 class="hero__title" id="hero-title">
+            Open Day &amp;<br>
+            <em>Cardano Day</em><br>
+            <span data-config="anno_scolastico"></span>
+          </h1>
+
+          <!-- Sottotitolo -->
+          <p class="hero__subtitle">
+            Scopri il tuo futuro all'ITIS G. Cardano di Pavia.
+            Laboratori, percorsi e orientamento per le famiglie
+            degli studenti delle scuole medie.
+          </p>
+
+          <!-- Stats -->
+          <div class="hero__stats" role="list" aria-label="Statistiche eventi">
+            <div class="hero__stat" role="listitem">
+              <div class="hero__stat-number">4</div>
+              <div class="hero__stat-label">eventi in programma</div>
+            </div>
+            <div class="hero__stat" role="listitem">
+              <div class="hero__stat-number">5</div>
+              <div class="hero__stat-label">laboratori attivi</div>
+            </div>
+            <div class="hero__stat" role="listitem">
+              <div class="hero__stat-number">300+</div>
+              <div class="hero__stat-label">posti disponibili</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo scuola -->
+        <div class="hero__logo-wrap" aria-hidden="true">
+          <div class="itis-logo itis-logo--hero">
+            <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       BANNER PROSSIMO EVENTO
+       ========================================================= -->
+  <div class="banner-event" role="complementary" aria-label="Prossimo evento">
+    <div class="container">
+      <div class="banner-event__inner">
+        <span class="banner-event__icon" aria-hidden="true">📅</span>
+        <span class="banner-event__label">Prossimo evento:</span>
+        <span class="banner-event__date-badge">18 NOV 2026</span>
+        <span id="banner-event-text" class="banner-event__text">
+          Open Day — Iscrizioni aperte fino al 10 novembre ore 23:59
+        </span>
+        <button id="banner-event-cta" class="banner-event__cta">
+          Iscriviti ora →
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================
+       SEZIONE EVENTI
+       ========================================================= -->
+  <main id="eventi">
+    <section class="section-events" aria-labelledby="events-title">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="section-title" id="events-title">
+            Eventi <em>disponibili</em>
+          </h2>
+          <p class="section-subtitle">
+            Seleziona un evento e iscriviti tramite il tuo profilo genitore
+          </p>
+        </div>
+
+        <!-- Griglia eventi (popolata da home.js) -->
+        <div id="events-grid" class="events-grid" role="list" aria-label="Lista eventi">
+          <!-- Le card vengono iniettate da home.js -->
+          <div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--color-text-muted);">
+            Caricamento eventi…
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         COME FUNZIONA
+         ========================================================= -->
+    <section id="come-funziona" class="section-how" aria-labelledby="how-title">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="section-title" id="how-title">
+            Come <em>funziona</em>
+          </h2>
+        </div>
+
+        <div class="how-grid">
+
+          <div class="how-card">
+            <div class="how-card__question">
+              <span class="how-card__icon" aria-hidden="true">👤</span>
+              Come mi registro?
+            </div>
+            <p class="how-card__answer">
+              Clicca su "Registrati" in alto, inserisci i tuoi dati come genitore e
+              verifica l'account tramite il codice OTP ricevuto via email.
+              I minorenni devono essere iscritti da un genitore.
+            </p>
+          </div>
+
+          <div class="how-card">
+            <div class="how-card__question">
+              <span class="how-card__icon" aria-hidden="true">👨‍👧</span>
+              Posso iscrivere più figli?
+            </div>
+            <p class="how-card__answer">
+              Sì, puoi aggiungere i tuoi figli al tuo profilo e gestire
+              le iscrizioni di ognuno separatamente.
+            </p>
+          </div>
+
+          <div class="how-card">
+            <div class="how-card__question">
+              <span class="how-card__icon" aria-hidden="true">📱</span>
+              Cos'è il QR code?
+            </div>
+            <p class="how-card__answer">
+              Dopo l'iscrizione riceverai via email un QR code che lo staff
+              scansionerà durante l'evento per registrare entrata, laboratori e uscita.
+            </p>
+          </div>
+
+          <div class="how-card">
+            <div class="how-card__question">
+              <span class="how-card__icon" aria-hidden="true">🔬</span>
+              Cardano Day: quanti laboratori?
+            </div>
+            <p class="how-card__answer">
+              Puoi scegliere 1 o 2 laboratori (massimo 1 per turno).
+              Gli orari e le aule vengono assegnati automaticamente dalla segreteria.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         CALENDARIO + PANNELLO STAFF
+         ========================================================= -->
+    <section class="section-bottom" aria-label="Calendario eventi e accesso personale">
+      <div class="container">
+        <div class="bottom-grid">
+
+          <!-- Calendario -->
+          <div class="calendar-card">
+            <h2 class="calendar-card__title">Calendario 2026–27</h2>
+            <ul class="calendar-list" aria-label="Prossimi eventi">
+
+              <li class="calendar-item">
+                <span class="calendar-item__dot calendar-item__dot--active" aria-hidden="true"></span>
+                <div class="calendar-item__date">
+                  <span class="calendar-item__date--active">18 NOV 2026</span>
+                </div>
+                <div class="calendar-item__info">
+                  <div class="calendar-item__name">Open Day — Novembre</div>
+                  <div class="calendar-item__sub">Iscrizioni: 1–10 nov</div>
+                </div>
+              </li>
+
+              <li class="calendar-item">
+                <span class="calendar-item__dot calendar-item__dot--active" aria-hidden="true"></span>
+                <div class="calendar-item__date">
+                  <span class="calendar-item__date--active">24 NOV 2026</span>
+                </div>
+                <div class="calendar-item__info">
+                  <div class="calendar-item__name">Cardano Day — Novembre</div>
+                  <div class="calendar-item__sub">Iscrizioni: 1–16 nov</div>
+                </div>
+              </li>
+
+              <li class="calendar-item">
+                <span class="calendar-item__dot calendar-item__dot--future" aria-hidden="true"></span>
+                <div class="calendar-item__date">18 DIC 2026</div>
+                <div class="calendar-item__info">
+                  <div class="calendar-item__name">Open Day — Dicembre</div>
+                  <div class="calendar-item__sub">Iscrizioni: 1–10 dic</div>
+                </div>
+              </li>
+
+              <li class="calendar-item">
+                <span class="calendar-item__dot calendar-item__dot--future" aria-hidden="true"></span>
+                <div class="calendar-item__date">13 GEN 2027</div>
+                <div class="calendar-item__info">
+                  <div class="calendar-item__name">Cardano Day — Gennaio</div>
+                  <div class="calendar-item__sub">Iscrizioni: 15 dic – 5 gen</div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- Pannello staff -->
+          <div class="staff-card">
+            <div class="staff-card__icon" aria-hidden="true">🏫</div>
+            <h2 class="staff-card__title">Sei personale scolastico?</h2>
+            <p class="staff-card__text">
+              Staff, Professori, Segreteria e Admin accedono tramite un URL
+              dedicato comunicato internamente dalla scuola.
+            </p>
+            <a href="accesso-personale.html" class="staff-card__btn">
+              Accesso Personale →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer id="contatti" class="footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);">
+            <div class="itis-logo itis-logo--sm">
+              <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+            </div>
+            <div class="footer__brand-name">ITIS "G. Cardano" — Pavia</div>
+          </div>
+          <p class="footer__brand-desc" data-config="ui.footer_desc"></p>
+        </div>
+
+        <!-- Accesso rapido -->
+        <div class="footer__col">
+          <div class="footer__col-title">Accesso rapido</div>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Home</a></li>
+            <li><a href="registrazione.html" class="footer__link">Registrati</a></li>
+            <li><a href="login.html" class="footer__link">Accedi</a></li>
+            <li><a href="login.html#forgot" class="footer__link">Recupera password</a></li>
+          </ul>
+        </div>
+
+        <!-- Informazioni -->
+        <div class="footer__col">
+          <div class="footer__col-title">Informazioni</div>
+          <ul class="footer__links">
+            <li><a href="#come-funziona" class="footer__link">Come funziona</a></li>
+            <li><a href="#" class="footer__link">FAQ</a></li>
+            <li><a href="#" class="footer__link">Contatti scuola</a></li>
+            <li><a href="#" class="footer__link">Privacy policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span class="footer__copy" data-config="ui.footer_copy"></span>
+        <span class="footer__version" data-config="ui.version"></span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- =========================================================
+       SCRIPTS
+       ========================================================= -->
+  <script src="js/config.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/home.js"></script>
+
+</body>
+</html>

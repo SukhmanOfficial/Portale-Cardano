@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Accesso Personale — ITIS "G. Cardano", Pavia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- Logo -->
+  <div class="auth-header">
+    <div class="itis-logo itis-logo--lg itis-logo--on-dark">
+      <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+    </div>
+    <div style="text-align:center">
+      <div class="auth-header__name">ITIS "G. Cardano" — Pavia</div>
+      <div class="auth-header__sub" style="display:flex;align-items:center;justify-content:center;gap:6px;">
+        <span style="background:rgba(232,80,10,0.2);border:1px solid rgba(232,80,10,0.4);border-radius:99px;padding:1px 10px;font-size:10px;color:rgba(255,150,80,0.95);font-weight:700;letter-spacing:.05em;text-transform:uppercase;">🔒 Area riservata</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card form -->
+  <div class="auth-card">
+
+    <h1 class="auth-card__title" style="text-align:center;">Accesso Personale</h1>
+    <p class="auth-card__subtitle" style="text-align:center;">
+      Solo per Staff, Professori, Segreteria e Admin
+    </p>
+
+    <!-- Notice pagina non indicizzata -->
+    <div style="
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:var(--radius-md);
+      padding:var(--space-3) var(--space-4);
+      display:flex;gap:var(--space-2);
+      align-items:flex-start;
+      font-size:var(--text-xs);
+      color:rgba(255,255,255,0.55);
+      line-height:1.6;
+      margin-bottom:var(--space-5);
+    ">
+      <span>🔒</span>
+      <span>Pagina non indicizzata. Accesso consentito solo al personale dell'istituto con credenziali autorizzate.</span>
+    </div>
+
+    <!-- Alert errore -->
+    <div id="login-alert" class="alert alert--error" role="alert" aria-live="polite" style="display:none"></div>
+
+    <!-- Form -->
+    <form id="login-form" novalidate>
+
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email istituzionale</label>
+        <input type="email" id="login-email" class="form-input"
+          placeholder="l.conti@itiscardanopv.edu.it"
+          autocomplete="username" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <div class="form-input-wrap">
+          <input type="password" id="login-password" class="form-input"
+            placeholder="••••••••••" autocomplete="current-password" required />
+          <span class="form-input-icon" data-toggle-pwd="login-password"
+            role="button" tabindex="0" aria-label="Mostra/nascondi password">👁</span>
+        </div>
+      </div>
+
+      <button type="submit" id="login-submit" class="btn-submit" style="margin-top:var(--space-2);">
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-text">ACCEDI AL PANNELLO</span>
+      </button>
+
+    </form>
+
+    <div class="form-divider">oppure</div>
+
+    <!-- Links -->
+    <div class="form-footer">
+      Nuovo al sistema?
+      <a href="registrazione-staff.html" class="form-link">Richiedi accesso Staff/Prof.</a>
+      <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.25);margin-top:4px;">
+        Richiede email @itiscardanopv.edu.it · Approvazione segreteria
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:var(--space-3);">
+      <a href="#forgot" class="form-link" style="font-size:var(--text-sm);">Password dimenticata?</a>
+    </div>
+
+    <!-- Griglia ruoli disponibili -->
+    <div style="
+      display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);
+      margin-top:var(--space-5);
+    ">
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:var(--space-3);">
+        <div style="font-size:1.2rem;margin-bottom:4px;">🧑‍🏫</div>
+        <div style="font-size:var(--text-xs);font-weight:700;color:rgba(255,150,80,0.9);">Staff / Professore</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;line-height:1.5;">Scanner QR, firme e studenti</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:var(--space-3);">
+        <div style="font-size:1.2rem;margin-bottom:4px;">📋</div>
+        <div style="font-size:var(--text-xs);font-weight:700;color:rgba(255,150,80,0.9);">Segreteria</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;line-height:1.5;">Gestione completa eventi</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:var(--space-3);">
+        <div style="font-size:1.2rem;margin-bottom:4px;">👑</div>
+        <div style="font-size:var(--text-xs);font-weight:700;color:rgba(255,255,255,0.7);">Admin</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;line-height:1.5;">Visualizzazione + segreteria</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:var(--space-3);">
+        <div style="font-size:1.2rem;margin-bottom:4px;">📝</div>
+        <div style="font-size:var(--text-xs);font-weight:700;color:rgba(255,255,255,0.7);">Registrazione</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;line-height:1.5;">Solo @itiscardanopv.edu.it</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="auth-back">
+    <a href="index.html">← Torna alla home page pubblica</a>
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

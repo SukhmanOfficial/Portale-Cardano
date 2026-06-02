@@ -1,0 +1,113 @@
+/* ============================================================
+   LOGO.CSS — Stili logo ITIS "G. Cardano"
+   Il logo è il file assets/logo.jpg
+   Nessun logo generato da CSS — solo dimensioni e stili
+   Sistema Cardano Day · ITIS G. Cardano, Pavia
+   ============================================================ */
+
+/* ============================================================
+   CLASSE BASE .itis-logo
+   Wrappa l'immagine in tutte le pagine
+   Uso: <div class="itis-logo itis-logo--sm">
+          <img src="assets/logo.jpg" alt="Logo ITIS G. Cardano" />
+        </div>
+   ============================================================ */
+
+.itis-logo {
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 2px solid rgba(232,80,10,0.45);
+  box-shadow: 0 0 0 1px rgba(232,80,10,0.10),
+              0 0 14px rgba(232,80,10,0.18);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.itis-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+  padding: 8%;          /* respiro dal bordo — si vede tutto il logo */
+  filter: contrast(1.05) brightness(0.97);
+}
+
+/* ============================================================
+   DIMENSIONI
+   ============================================================ */
+
+/* Navbar, topbar, footer — piccolo */
+.itis-logo--sm {
+  width: 36px;
+  height: 36px;
+}
+
+/* Topbar area genitore, iscrizione */
+.itis-logo--md {
+  width: 44px;
+  height: 44px;
+}
+
+/* Login, registrazione, accesso personale — centrato */
+.itis-logo--lg {
+  width: 76px;
+  height: 76px;
+  border-width: 2.5px;
+  box-shadow: 0 0 0 2px rgba(232,80,10,0.12),
+              0 0 28px rgba(232,80,10,0.22),
+              0 6px 20px rgba(0,0,0,0.18);
+}
+
+/* Hero home page — grande */
+.itis-logo--hero {
+  width: 170px;
+  height: 170px;
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(232,80,10,0.15),
+              0 0 50px rgba(232,80,10,0.28),
+              0 10px 40px rgba(0,0,0,0.35);
+}
+
+.itis-logo--hero:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 2px rgba(232,80,10,0.25),
+              0 0 70px rgba(232,80,10,0.38),
+              0 14px 50px rgba(0,0,0,0.45);
+}
+
+/* ============================================================
+   VARIANTE SU SFONDO SCURO (auth pages, segreteria, scanner)
+   Bordo arancione più luminoso
+   ============================================================ */
+
+.itis-logo--on-dark {
+  border-color: rgba(232,80,10,0.65);
+  box-shadow: 0 0 0 1px rgba(232,80,10,0.15),
+              0 0 20px rgba(232,80,10,0.30);
+}
+
+.itis-logo--lg.itis-logo--on-dark {
+  box-shadow: 0 0 0 2px rgba(232,80,10,0.18),
+              0 0 36px rgba(232,80,10,0.35),
+              0 8px 24px rgba(0,0,0,0.30);
+}
+
+/* ============================================================
+   LOGO NELLE TOPBAR SCURE
+   Garantisce visibilità su sfondo var(--color-dark)
+   ============================================================ */
+
+.topbar .itis-logo,
+.scan-topbar .itis-logo,
+.iscrizione-topbar .itis-logo,
+.seg-topbar .itis-logo,
+.staff-topbar .itis-logo {
+  border-color: rgba(232,80,10,0.55);
+  box-shadow: 0 0 0 1px rgba(232,80,10,0.12),
+              0 0 10px rgba(232,80,10,0.20);
+}

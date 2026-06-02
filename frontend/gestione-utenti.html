@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Gestione Utenti — ITIS "G. Cardano", Pavia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/segreteria.css" />
+  <link rel="stylesheet" href="css/gestione-utenti.css" />
+</head>
+<body>
+
+<div class="seg-layout">
+
+  <!-- TOPBAR -->
+  <header class="seg-topbar">
+    <div class="seg-topbar__left">
+      <button id="sidebar-toggle" style="display:none;background:none;border:none;cursor:pointer;padding:var(--space-2);">
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+      </button>
+      <a href="segreteria.html" style="display:flex;align-items:center;gap:var(--space-3);">
+        <div class="itis-logo itis-logo--sm"><img src="assets/logo.jpg" alt="Logo ITIS" /></div>
+        <div class="seg-topbar__title">
+          <span class="seg-topbar__name">ITIS "G. Cardano" — Pavia</span>
+          <span class="seg-topbar__sub">Pannello Segreteria</span>
+        </div>
+      </a>
+    </div>
+    <div class="seg-topbar__right">
+      <span class="seg-role-badge">Segreteria</span>
+      <div class="seg-topbar__avatar">GF</div>
+      <span class="seg-topbar__user-name">Giulia Ferrari</span>
+      <button class="seg-topbar__logout" onclick="window.location.href='accesso-personale.html'">Esci</button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="seg-sidebar">
+    <div class="seg-sidebar__label">Gestione</div>
+    <div class="seg-sidebar__nav">
+      <a class="seg-nav-link" href="segreteria.html"><span class="seg-nav-link__icon">📊</span> Dashboard</a>
+      <a class="seg-nav-link" href="segreteria.html"><span class="seg-nav-link__icon">📅</span> Eventi</a>
+      <a class="seg-nav-link" href="segreteria.html"><span class="seg-nav-link__icon">📋</span> Iscrizioni</a>
+      <a class="seg-nav-link seg-nav-link--active" href="gestione-utenti.html">
+        <span class="seg-nav-link__icon">👥</span> Utenti
+        <span class="seg-nav-badge">3</span>
+      </a>
+      <a class="seg-nav-link" href="gestione-utenti.html">
+        <span class="seg-nav-link__icon">✅</span> Approvazioni
+        <span class="seg-nav-badge">2</span>
+      </a>
+    </div>
+    <div class="seg-sidebar__label">Strumenti</div>
+    <div class="seg-sidebar__nav">
+      <a class="seg-nav-link" href="divisione-gruppi.html"><span class="seg-nav-link__icon">🔀</span> Dividi gruppi</a>
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">📊</span> Export Excel</a>
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">🔔</span> Notifiche</a>
+      <a class="seg-nav-link" href="#"><span class="seg-nav-link__icon">🏫</span> Scuole medie</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="seg-main">
+
+    <div class="seg-page-header">
+      <h1 class="seg-page-title">Gestione <em>Utenti</em></h1>
+      <div class="seg-page-actions">
+        <button class="seg-btn-secondary" onclick="alert('Export lista utenti')">📊 Export lista</button>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="page-tabs">
+      <button class="page-tab page-tab--active" data-tab-target="tutti">
+        👥 Tutti gli utenti <span class="tab-count" id="tab-count-tutti">48</span>
+      </button>
+      <button class="page-tab" data-tab-target="approvazioni">
+        ✅ Approvazioni in attesa <span class="tab-count" id="tab-count-approv">2</span>
+      </button>
+      <button class="page-tab" data-tab-target="notifica">
+        🔔 Invia notifiche
+      </button>
+    </div>
+
+
+    <!-- TAB: TUTTI GLI UTENTI -->
+    <div data-tab="tutti">
+
+      <!-- Approvazioni in evidenza -->
+      <div class="approv-box">
+        <div class="approv-box__header">
+          <div class="approv-box__title">⏳ Approvazioni in attesa</div>
+          <span class="approv-count-badge" id="approv-badge">2 richieste</span>
+        </div>
+        <div id="approv-list"><!-- JS --></div>
+      </div>
+
+      <!-- Filtri -->
+      <div class="filters-bar">
+        <input type="text" id="search-utenti" class="filters-bar__search"
+          placeholder="🔍 Cerca per nome o email..." />
+        <select id="filter-ruolo" class="filters-bar__select">
+          <option value="tutti">Tutti i ruoli</option>
+          <option value="segreteria">Segreteria</option>
+          <option value="staff">Staff/Prof.</option>
+          <option value="genitore">Genitore</option>
+        </select>
+        <select id="filter-stato" class="filters-bar__select">
+          <option value="tutti">Tutti gli stati</option>
+          <option value="attivo">Attivo</option>
+          <option value="non-verif">Non verificato</option>
+          <option value="sospeso">Sospeso</option>
+        </select>
+        <span class="filters-bar__count" id="utenti-count">48 utenti totali</span>
+      </div>
+
+      <!-- Tabella -->
+      <div class="utenti-table-wrap">
+        <div class="utenti-table-header">
+          <span class="utenti-table-title">Tutti gli utenti</span>
+          <button class="seg-btn-secondary" onclick="alert('Export lista')">📊 Export lista</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="utenti-table">
+            <thead>
+              <tr>
+                <th>Utente</th>
+                <th>Email</th>
+                <th>Ruolo</th>
+                <th>Stato</th>
+                <th>Iscrizioni</th>
+                <th>Registrato il</th>
+                <th>Azioni</th>
+              </tr>
+            </thead>
+            <tbody id="utenti-tbody"><!-- JS --></tbody>
+          </table>
+        </div>
+        <div class="utenti-table-footer" id="utenti-footer">Caricamento...</div>
+      </div>
+
+    </div><!-- /tab tutti -->
+
+
+    <!-- TAB: APPROVAZIONI -->
+    <div data-tab="approvazioni" style="display:none">
+
+      <div class="approv-box">
+        <div class="approv-box__header">
+          <div class="approv-box__title">⏳ Approvazioni in attesa</div>
+          <span class="approv-count-badge">2 richieste</span>
+        </div>
+        <div id="approv-list-2">
+          <!-- Popolato da JS (stesso contenuto di approv-list) -->
+        </div>
+      </div>
+
+    </div><!-- /tab approvazioni -->
+
+
+    <!-- TAB: NOTIFICA -->
+    <div data-tab="notifica" style="display:none">
+
+      <div class="notifica-card">
+        <div class="notifica-card__title">🔔 Invia notifica / email</div>
+
+        <div class="notifica-grid">
+          <div>
+            <label class="notifica-label" for="notifica-dest">Destinatari</label>
+            <select id="notifica-dest" class="notifica-select">
+              <option>Tutti gli iscritti a Open Day 18 Nov</option>
+              <option>Tutti gli iscritti a Cardano Day 24 Nov</option>
+              <option>Solo Percorso Misto</option>
+              <option>Solo Percorso Tecnico</option>
+              <option>Tutti i genitori</option>
+              <option>Tutti gli utenti attivi</option>
+            </select>
+
+            <label class="notifica-label" for="notifica-oggetto" style="margin-top:var(--space-4);">Oggetto</label>
+            <input type="text" id="notifica-oggetto" class="notifica-input"
+              placeholder="Aggiornamento: divisione gruppi Open Day 18 Novembre"
+              value="Aggiornamento: divisione gruppi Open Day 18 Novembre" />
+          </div>
+
+          <div>
+            <label class="notifica-label" for="notifica-msg">Messaggio</label>
+            <textarea id="notifica-msg" class="notifica-textarea" style="height:120px;">Gentili genitori, la divisione in gruppi per l'Open Day del 18 novembre è stata completata. Trovate il gruppo assegnato al vostro figlio nell'area personale e nel QR code aggiornato.</textarea>
+          </div>
+        </div>
+
+        <div class="notifica-actions">
+          <button class="seg-btn-primary" onclick="inviaNotifica()">
+            ✉ Invia a 87 destinatari
+          </button>
+          <span style="color:var(--color-text-muted);font-size:var(--text-sm);">oppure</span>
+          <button class="seg-btn-secondary" onclick="salvaBozza()">💾 Salva bozza</button>
+        </div>
+      </div>
+
+    </div><!-- /tab notifica -->
+
+  </main>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/gestione-utenti.js"></script>
+</body>
+</html>

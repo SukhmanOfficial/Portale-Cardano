@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrazione Genitore — ITIS G. Cardano, Pavia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- Logo -->
+  <div class="auth-header">
+    <div class="itis-logo itis-logo--lg itis-logo--on-dark">
+      <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+    </div>
+    <div style="text-align:center">
+      <div class="auth-header__name" data-config="istituto.nome_lungo"></div>
+      <div class="auth-header__sub" data-config="ui.auth_sub"></div>
+    </div>
+  </div>
+
+  <!-- Card form -->
+  <div class="auth-card auth-card--wide">
+
+    <h1 class="auth-card__title">Registrazione Genitore</h1>
+    <p class="auth-card__subtitle">Crea il tuo account per iscrivere i tuoi figli</p>
+
+    <!-- Stepper -->
+    <div class="stepper" role="list" aria-label="Avanzamento registrazione">
+      <div class="stepper__step stepper__step--active" role="listitem" data-step-indicator="1">
+        <div class="stepper__circle">✓</div>
+        <span class="stepper__label">Dati</span>
+      </div>
+      <div class="stepper__step stepper__step--todo" role="listitem" data-step-indicator="2">
+        <div class="stepper__circle">2</div>
+        <span class="stepper__label">Verifica OTP</span>
+      </div>
+      <div class="stepper__step stepper__step--todo" role="listitem" data-step-indicator="3">
+        <div class="stepper__circle">3</div>
+        <span class="stepper__label">Completato</span>
+      </div>
+    </div>
+
+    <!-- Alert errore -->
+    <div id="reg-alert" class="alert alert--error" role="alert" aria-live="polite" style="display:none"></div>
+
+    <form id="reg-form" novalidate>
+
+      <!-- ========== STEP 1 — Dati personali ========== -->
+      <div data-step="1">
+
+        <div class="form-section-title">Step 1 — Dati personali</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="reg-nome">Nome *</label>
+            <input type="text" id="reg-nome" class="form-input" placeholder="Mario" autocomplete="given-name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-cognome">Cognome *</label>
+            <input type="text" id="reg-cognome" class="form-input" placeholder="Rossi" autocomplete="family-name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email *</label>
+          <input type="email" id="reg-email" class="form-input" placeholder="mario.rossi@email.it" autocomplete="email" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-via">Via e numero civico *</label>
+          <input type="text" id="reg-via" class="form-input" placeholder="Via Roma, 14" autocomplete="street-address" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="reg-cap">CAP *</label>
+            <input type="text" id="reg-cap" class="form-input" placeholder="27100"
+              autocomplete="postal-code" maxlength="5" inputmode="numeric" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-citta">
+              Città *
+              <span class="auto-badge" id="citta-auto-badge" style="display:none">• Auto</span>
+            </label>
+            <input type="text" id="reg-citta" class="form-input" placeholder="Pavia"
+              autocomplete="address-level2" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-telefono">Cellulare *</label>
+          <input type="tel" id="reg-telefono" class="form-input" placeholder="+39 345 678 9012" autocomplete="tel" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password">
+            Password * <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:rgba(255,255,255,0.3)">(min. 8 caratteri)</span>
+          </label>
+          <div class="form-input-wrap">
+            <input type="password" id="reg-password" class="form-input" placeholder="••••••••" autocomplete="new-password" required />
+            <span class="form-input-icon" data-toggle-pwd="reg-password" role="button" tabindex="0" aria-label="Mostra/nascondi password">👁</span>
+          </div>
+          <div class="password-strength">
+            <div class="password-strength__bar">
+              <div id="pwd-strength-bar" class="password-strength__fill"></div>
+            </div>
+            <span id="pwd-strength-label" class="password-strength__label"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password-confirm">Conferma password *</label>
+          <div class="form-input-wrap">
+            <input type="password" id="reg-password-confirm" class="form-input" placeholder="••••••••" autocomplete="new-password" required />
+            <span class="form-input-icon" data-toggle-pwd="reg-password-confirm" role="button" tabindex="0" aria-label="Mostra/nascondi conferma">👁</span>
+          </div>
+          <span id="pwd-match-msg"></span>
+        </div>
+
+        <button type="button" id="reg-btn-next" class="btn-submit" style="margin-top:var(--space-2)">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-text">Continua →</span>
+        </button>
+
+        <div class="form-footer">
+          Hai già un account? <a href="login.html" class="form-link">Accedi qui</a>
+        </div>
+
+      </div><!-- /step 1 -->
+
+
+      <!-- ========== STEP 2 — Verifica OTP ========== -->
+      <div data-step="2" style="display:none">
+
+        <div class="form-section-title">Step 2 — Verifica email</div>
+
+        <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.5);margin-bottom:var(--space-2);">
+          Abbiamo inviato un codice a 6 cifre a:
+        </p>
+        <p style="font-size:var(--text-base);font-weight:var(--fw-bold);color:var(--color-text-on-dark);margin-bottom:var(--space-5);">
+          <span id="otp-email-label">—</span>
+        </p>
+
+        <div class="otp-wrap" role="group" aria-label="Codice OTP a 6 cifre">
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Cifra 1" />
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Cifra 2" />
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Cifra 3" />
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Cifra 4" />
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Cifra 5" />
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Cifra 6" />
+        </div>
+
+        <div id="otp-error" class="alert alert--error" role="alert" style="display:none;margin-top:var(--space-2)"></div>
+
+        <div class="otp-resend">
+          Non hai ricevuto il codice?
+          <a href="#" id="otp-resend-btn" class="form-link">Reinvia email</a>
+          <span class="otp-resend__note">Il codice scade dopo 15 minuti</span>
+        </div>
+
+        <button type="button" id="reg-btn-verify" class="btn-submit" style="margin-top:var(--space-5)">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-text">VERIFICA CODICE</span>
+        </button>
+
+        <div style="text-align:center;margin-top:var(--space-4)">
+          <button type="button" id="otp-back-btn"
+            style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:var(--text-sm);cursor:pointer;">
+            ← Torna indietro
+          </button>
+        </div>
+
+      </div><!-- /step 2 -->
+
+
+      <!-- ========== STEP 3 — Completato ========== -->
+      <div data-step="3" style="display:none">
+
+        <div class="reg-success">
+          <span class="reg-success__icon" aria-hidden="true">✅</span>
+          <h2 class="reg-success__title">Account creato!</h2>
+          <p class="reg-success__text">
+            Il tuo account è stato verificato e attivato con successo.
+            Puoi ora iscrivere i tuoi figli agli eventi.
+          </p>
+
+          <div class="reg-success__info">
+            <div class="reg-success__info-row">
+              <span class="reg-success__info-label">Account</span>
+              <span id="success-email" class="reg-success__info-value">—</span>
+            </div>
+            <div class="reg-success__info-row">
+              <span class="reg-success__info-label">Ruolo</span>
+              <span class="reg-success__info-value">
+                <span class="reg-success__badge">Genitore</span>
+              </span>
+            </div>
+          </div>
+
+          <button type="button" id="reg-btn-done" class="btn-submit">
+            Vai alla tua area personale →
+          </button>
+
+          <div class="form-footer" style="margin-top:var(--space-4)">
+            oppure <a href="index.html" class="form-link">torna alla home</a>
+          </div>
+        </div>
+
+      </div><!-- /step 3 -->
+
+    </form>
+  </div><!-- /auth-card -->
+
+  <div class="auth-back">
+    <a href="index.html">← Torna alla home</a>
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/registrazione.js"></script>
+</body>
+</html>
