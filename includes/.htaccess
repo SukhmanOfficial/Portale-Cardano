@@ -1,0 +1,4 @@
+# Blocca TUTTO l'accesso diretto a includes/
+# Questi file sono solo per uso interno PHP
+Order deny,allow
+Deny from all

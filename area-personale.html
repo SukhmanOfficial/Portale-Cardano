@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Area Personale Genitore — Sistema Cardano Day, ITIS G. Cardano Pavia" />
+  <title>Area Personale — ITIS G. Cardano, Pavia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/area-genitore.css" />
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- =========================================================
+       TOPBAR
+       ========================================================= -->
+  <header class="topbar" role="banner">
+    <div class="topbar__brand">
+      <!-- Hamburger mobile -->
+      <button
+        id="sidebar-toggle"
+        aria-label="Apri menu"
+        style="display:none;background:none;border:none;cursor:pointer;padding:var(--space-2);margin-right:var(--space-2);"
+      >
+        <span style="display:block;width:20px;height:2px;background:#fff;margin:4px 0"></span>
+        <span style="display:block;width:20px;height:2px;background:#fff;margin:4px 0"></span>
+        <span style="display:block;width:20px;height:2px;background:#fff;margin:4px 0"></span>
+      </button>
+
+      <a href="index.html" style="display:flex;align-items:center;gap:var(--space-3);" aria-label="ITIS G. Cardano — Home">
+<div class="itis-logo itis-logo--sm" aria-hidden="true">
+            <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+          </div>
+        <div>
+          <div class="topbar__name" data-config="istituto.nome_lungo"></div>
+          <div class="topbar__sub">Area Personale Genitore</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="topbar__right">
+      <div class="topbar__user">
+        <div class="topbar__user-info">
+          <div id="topbar-user-name" class="topbar__user-name">Mario Rossi</div>
+          <div class="topbar__user-role">Genitore</div>
+        </div>
+        <div id="topbar-avatar" class="topbar__avatar" aria-hidden="true">MR</div>
+      </div>
+      <button id="topbar-logout" class="topbar__logout">Esci</button>
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+  <aside class="sidebar" role="navigation" aria-label="Menu area personale">
+
+    <div class="sidebar__section-label">Menu</div>
+    <nav class="sidebar__nav">
+      <a class="sidebar__link sidebar__link--active" data-nav="dashboard" href="#dashboard">
+        <span class="sidebar__link-icon" aria-hidden="true">📊</span>
+        Dashboard
+      </a>
+      <a class="sidebar__link" data-nav="figli" href="#figli">
+        <span class="sidebar__link-icon" aria-hidden="true">👨‍👧</span>
+        I miei figli
+      </a>
+      <a class="sidebar__link" data-nav="iscrizioni" href="#iscrizioni">
+        <span class="sidebar__link-icon" aria-hidden="true">📋</span>
+        Iscrizioni
+        <span class="sidebar__badge" aria-label="2 iscrizioni">2</span>
+      </a>
+      <a class="sidebar__link" data-nav="qr" href="#qr">
+        <span class="sidebar__link-icon" aria-hidden="true">📱</span>
+        QR Code
+      </a>
+      <a class="sidebar__link" data-nav="storico" href="#storico">
+        <span class="sidebar__link-icon" aria-hidden="true">📅</span>
+        Storico
+      </a>
+    </nav>
+
+    <div class="sidebar__section-label" style="margin-top:var(--space-4)">Account</div>
+    <nav class="sidebar__nav">
+      <a class="sidebar__link" data-nav="impostazioni" href="#impostazioni">
+        <span class="sidebar__link-icon" aria-hidden="true">⚙️</span>
+        Impostazioni
+      </a>
+      <a class="sidebar__link" data-nav="password" href="#password">
+        <span class="sidebar__link-icon" aria-hidden="true">🔒</span>
+        Password
+      </a>
+      <a class="sidebar__link" href="index.html" style="color:var(--color-danger)">
+        <span class="sidebar__link-icon" aria-hidden="true">🚪</span>
+        Logout
+      </a>
+    </nav>
+
+  </aside>
+
+
+  <!-- =========================================================
+       CONTENUTO PRINCIPALE
+       ========================================================= -->
+  <main class="main-content" id="main" role="main">
+
+
+    <!-- =====================================================
+         SEZIONE: DASHBOARD
+         ===================================================== -->
+    <div data-section="dashboard">
+
+      <div class="page-header">
+        <h1 class="page-title">Benvenuto, <em id="welcome-name">Mario</em>!</h1>
+        <p class="page-subtitle">Gestisci le iscrizioni dei tuoi figli agli eventi ITIS G. Cardano</p>
+      </div>
+
+      <!-- KPI -->
+      <div id="kpi-grid" class="kpi-grid" aria-label="Riepilogo rapido">
+        <!-- Popolato da JS -->
+      </div>
+
+      <!-- Banner evento -->
+      <div class="dashboard-banner" role="complementary" aria-label="Evento disponibile">
+        <div class="dashboard-banner__icon" aria-hidden="true">🎓</div>
+        <div class="dashboard-banner__text">
+          <div class="dashboard-banner__title">Open Day</div>
+          <div class="dashboard-banner__sub">
+            Le iscrizioni sono aperte! 87 posti ancora disponibili — chiusura 10 nov ore 23:59
+          </div>
+        </div>
+        <button class="dashboard-banner__btn" onclick="window.location.href='iscrizione-openday.html'">
+          Iscriviti ora →
+        </button>
+      </div>
+
+      <!-- I miei figli -->
+      <div class="section-block">
+        <div class="section-block__header">
+          <h2 class="section-block__title">I miei figli</h2>
+          <button class="btn-iscrivilo" style="width:auto;padding:var(--space-2) var(--space-4);"
+            onclick="showSectionPublic('figli')">+ Aggiungi figlio</button>
+        </div>
+        <div id="figli-grid-dash" class="figli-grid"><!-- JS --></div>
+      </div>
+
+      <!-- Iscrizioni attive -->
+      <div class="section-block">
+        <div class="section-block__header">
+          <h2 class="section-block__title">Iscrizioni attive</h2>
+        </div>
+        <div id="iscrizioni-list" class="iscrizioni-list"><!-- JS --></div>
+      </div>
+
+    </div><!-- /dashboard -->
+
+
+    <!-- =====================================================
+         SEZIONE: I MIEI FIGLI
+         ===================================================== -->
+    <div data-section="figli" style="display:none">
+
+      <div class="page-header">
+        <h1 class="page-title">I miei <em>figli</em></h1>
+        <p class="page-subtitle">
+          Gestisci i profili dei tuoi figli. I dati vengono salvati una volta sola
+          e usati per tutte le iscrizioni future.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block__header">
+          <h2 class="section-block__title">Figli già registrati</h2>
+        </div>
+        <div id="figli-grid-page" class="figli-grid"><!-- JS --></div>
+      </div>
+
+      <!-- Form aggiungi figlio -->
+      <div class="section-block">
+        <div class="section-block__header">
+          <h2 class="section-block__title">Aggiungi nuovo figlio</h2>
+        </div>
+
+        <div style="background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-4);">
+            <div>
+              <label class="form-label" for="figlio-nome" style="display:block;margin-bottom:var(--space-1);font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);">
+                Nome *
+              </label>
+              <input type="text" id="figlio-nome" placeholder="Chiara"
+                style="width:100%;padding:var(--space-3) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-base);outline:none;" />
+            </div>
+            <div>
+              <label class="form-label" for="figlio-cognome" style="display:block;margin-bottom:var(--space-1);font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);">
+                Cognome *
+              </label>
+              <input type="text" id="figlio-cognome" placeholder="Rossi"
+                style="width:100%;padding:var(--space-3) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-base);outline:none;" />
+            </div>
+          </div>
+
+          <div style="margin-bottom:var(--space-4);">
+            <label class="form-label" for="figlio-scuola" style="display:block;margin-bottom:var(--space-1);font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);">
+              Scuola media di provenienza * <span style="color:var(--color-primary);font-size:10px;text-transform:none;letter-spacing:0;">(min. 3 caratteri per cercare)</span>
+            </label>
+            <div style="position:relative;">
+              <input type="text" id="figlio-scuola" placeholder="Manzoni"
+                style="width:100%;padding:var(--space-3) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-base);outline:none;"
+                autocomplete="off" />
+              <div id="scuola-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);z-index:20;max-height:200px;overflow-y:auto;margin-top:4px;"></div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:var(--space-3);">
+            <button id="btn-salva-figlio"
+              style="padding:var(--space-3) var(--space-6);background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:700;cursor:pointer;">
+              Salva figlio
+            </button>
+            <button onclick="showSectionPublic('dashboard')"
+              style="padding:var(--space-3) var(--space-6);background:none;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-secondary);cursor:pointer;">
+              Annulla
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /figli -->
+
+
+    <!-- =====================================================
+         SEZIONE: ISCRIZIONI
+         ===================================================== -->
+    <div data-section="iscrizioni" style="display:none">
+
+      <div class="page-header">
+        <h1 class="page-title">Le mie <em>iscrizioni</em></h1>
+        <p class="page-subtitle">Visualizza e gestisci le iscrizioni attive dei tuoi figli</p>
+      </div>
+
+      <div id="iscrizioni-list-page" class="iscrizioni-list"><!-- JS --></div>
+
+    </div><!-- /iscrizioni -->
+
+
+    <!-- =====================================================
+         SEZIONE: QR CODE
+         ===================================================== -->
+    <div data-section="qr" style="display:none">
+
+      <div class="page-header">
+        <h1 class="page-title">I miei <em>QR Code</em></h1>
+        <p class="page-subtitle">Scarica o stampa i QR code per accedere agli eventi. Tienili pronti il giorno dell'evento.</p>
+      </div>
+
+      <!-- Banner inviati via email -->
+      <div id="qr-banner"><!-- JS --></div>
+
+      <!-- Griglia QR -->
+      <div id="qr-grid" class="qr-grid"><!-- JS --></div>
+
+      <!-- Come usare — solo Cardano Day (nascosto da JS se non ci sono iscrizioni CD) -->
+      <div id="qr-how-section" class="section-block" style="margin-top:var(--space-8)">
+        <div class="section-block__header">
+          <h2 class="section-block__title">Come usare il QR code il giorno dell'evento</h2>
+          <span style="font-size:var(--text-xs);color:var(--color-text-muted);">Solo Cardano Day — 4 firme</span>
+        </div>
+        <div id="qr-how-grid" class="qr-how-grid"><!-- JS --></div>
+      </div>
+
+    </div><!-- /qr -->
+
+
+    <!-- =====================================================
+         SEZIONE: STORICO (placeholder)
+         ===================================================== -->
+    <div data-section="storico" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title"><em>Storico</em> iscrizioni</h1>
+        <p class="page-subtitle">Tutti gli eventi a cui hai iscritto i tuoi figli</p>
+      </div>
+      <div style="background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10);text-align:center;color:var(--color-text-muted);">
+        Nessun evento passato da visualizzare.
+      </div>
+    </div>
+
+
+    <!-- =====================================================
+         SEZIONE: IMPOSTAZIONI (placeholder)
+         ===================================================== -->
+    <div data-section="impostazioni" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title"><em>Impostazioni</em></h1>
+        <p class="page-subtitle">Gestisci i tuoi dati personali</p>
+      </div>
+      <div style="background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10);text-align:center;color:var(--color-text-muted);">
+        Sezione in arrivo.
+      </div>
+    </div>
+
+
+    <!-- =====================================================
+         SEZIONE: PASSWORD (placeholder)
+         ===================================================== -->
+    <div data-section="password" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title">Cambia <em>password</em></h1>
+      </div>
+      <div style="background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10);text-align:center;color:var(--color-text-muted);">
+        Sezione in arrivo.
+      </div>
+    </div>
+
+  </main>
+</div><!-- /app-layout -->
+
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+<script>
+  // Rende showSection accessibile da onclick inline
+  window.showSectionPublic = function(name) {
+    if (window._showSection) window._showSection(name);
+  };
+</script>
+<script src="js/api-client.js"></script>
+<script src="js/config.js"></script>
+<script src="js/area-genitore.js"></script>
+<script>
+  // Esponi showSection al bridge public
+  document.addEventListener('DOMContentLoaded', function () {
+    // Sidebar toggle visible su mobile
+    const toggle = document.getElementById('sidebar-toggle');
+    if (window.innerWidth <= 900 && toggle) toggle.style.display = 'block';
+    window.addEventListener('resize', function () {
+      if (toggle) toggle.style.display = window.innerWidth <= 900 ? 'block' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

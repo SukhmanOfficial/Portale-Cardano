@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Pannello Admin — ITIS "G. Cardano", Pavia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/segreteria.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+<div class="seg-layout">
+
+  <!-- =========================================================
+       TOPBAR
+       ========================================================= -->
+  <header class="seg-topbar">
+    <div class="seg-topbar__left">
+      <button id="sidebar-toggle" style="display:none;background:none;border:none;cursor:pointer;padding:var(--space-2);">
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+      </button>
+      <a href="index.html" style="display:flex;align-items:center;gap:var(--space-3);">
+        <div class="itis-logo itis-logo--sm">
+          <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano"' />
+        </div>
+        <div class="seg-topbar__title">
+          <span class="seg-topbar__name">ITIS "G. Cardano" — Pavia</span>
+          <span class="seg-topbar__sub">Pannello Amministratore</span>
+        </div>
+      </a>
+    </div>
+    <div class="seg-topbar__right">
+      <span class="seg-role-badge" style="background:#7C3AED;">👑 Admin</span>
+      <div class="seg-topbar__avatar" id="topbar-avatar">GD</div>
+      <span class="seg-topbar__user-name" id="topbar-user-name">Giuseppe Dirigente</span>
+      <button class="seg-topbar__logout"
+        onclick="if(confirm('Vuoi uscire?'))window.location.href='index.html'">
+        Esci
+      </button>
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+  <aside class="seg-sidebar">
+
+    <div class="seg-sidebar__label">Visualizzazione</div>
+    <div class="seg-sidebar__nav">
+      <button class="seg-nav-link seg-nav-link--active" data-nav="dashboard">
+        <span class="seg-nav-link__icon">📊</span> Dashboard
+      </button>
+      <button class="seg-nav-link" data-nav="utenti"
+        style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:var(--space-3);">
+          <span class="seg-nav-link__icon">👥</span> Utenti
+        </span>
+        <span style="font-size:10px;color:var(--color-text-muted);font-style:italic;">Sola lettura</span>
+      </button>
+      <button class="seg-nav-link" data-nav="eventi"
+        style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:var(--space-3);">
+          <span class="seg-nav-link__icon">📅</span> Eventi
+        </span>
+        <span style="font-size:10px;color:var(--color-text-muted);font-style:italic;">Sola lettura</span>
+      </button>
+      <button class="seg-nav-link" data-nav="iscrizioni"
+        style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:var(--space-3);">
+          <span class="seg-nav-link__icon">📋</span> Iscrizioni
+        </span>
+        <span style="font-size:10px;color:var(--color-text-muted);font-style:italic;">Sola lettura</span>
+      </button>
+      <button class="seg-nav-link" data-nav="statistiche"
+        style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:var(--space-3);">
+          <span class="seg-nav-link__icon">📈</span> Statistiche
+        </span>
+        <span style="font-size:10px;color:var(--color-text-muted);font-style:italic;">Sola lettura</span>
+      </button>
+    </div>
+
+    <div class="seg-sidebar__label">Azione Admin</div>
+    <div class="seg-sidebar__nav">
+      <button class="seg-nav-link" data-nav="segreteria"
+        style="color:var(--color-primary);font-weight:var(--fw-semibold);">
+        <span class="seg-nav-link__icon">🔑</span> Gestione Segreteria
+      </button>
+      <button class="seg-nav-link" data-nav="impostazioni">
+        <span class="seg-nav-link__icon">⚙️</span> Impostazioni
+      </button>
+    </div>
+
+  </aside>
+
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+  <main class="seg-main">
+
+
+    <!-- =====================================================
+         DASHBOARD
+         ===================================================== -->
+    <!-- Messaggio feedback globale -->
+    <div id="admin-msg" style="display:none;padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);margin-bottom:var(--space-4);font-weight:600;font-size:var(--text-sm);"></div>
+
+    <div data-section="dashboard">
+
+      <div class="seg-page-header">
+        <div>
+          <h1 class="seg-page-title">Pannello <em>Admin</em></h1>
+          <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-1);">
+            Visualizzazione completa del sistema · Unica azione: assegnare o revocare il ruolo Segreteria
+          </p>
+        </div>
+      </div>
+
+      <!-- Banner accesso limitato -->
+      <div class="admin-banner" role="note">
+        <span class="admin-banner__icon" aria-hidden="true">🔒</span>
+        <div>
+          <div class="admin-banner__title">Pannello Admin — Accesso limitato</div>
+          <div class="admin-banner__text">
+            L'Admin ha visibilità completa in sola lettura. L'unica azione disponibile è assegnare
+            o revocare il ruolo Segreteria. Nessuna modifica a eventi, iscrizioni o utenti è permessa.
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI sola lettura -->
+      <div id="admin-kpi-grid" class="admin-kpi-grid" aria-label="Statistiche sistema (sola lettura)">
+        <!-- JS -->
+      </div>
+
+      <!-- Griglia: gestione segreteria + eventi -->
+      <div class="admin-bottom-grid">
+
+        <!-- Gestione segreteria -->
+        <div class="admin-card">
+          <div class="admin-card__header">
+            <h2 class="admin-card__title">🔑 Gestione ruolo Segreteria</h2>
+            <span class="admin-action-badge">✏ Azione disponibile</span>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="seg-mgmt-table" aria-label="Utenti e ruolo segreteria">
+              <thead>
+                <tr>
+                  <th>Utente</th>
+                  <th>Ruolo attuale</th>
+                  <th>Stato</th>
+                  <th>Azione Admin</th>
+                </tr>
+              </thead>
+              <tbody id="seg-mgmt-tbody"><!-- JS --></tbody>
+            </table>
+          </div>
+
+          <div class="admin-note">
+            ℹ Solo utenti Staff/Prof. possono essere promossi a Segreteria.
+            Il ruolo Admin non può essere assegnato da qui.
+          </div>
+        </div>
+
+        <!-- Eventi sola lettura -->
+        <div class="admin-card">
+          <div class="admin-card__header">
+            <h2 class="admin-card__title">📅 Eventi in programma</h2>
+            <span class="admin-readonly-badge">🔒 Sola lettura</span>
+          </div>
+          <div id="admin-eventi-list" class="admin-eventi-list"><!-- JS --></div>
+          <div class="admin-eventi-note">
+            🔒 Modifica eventi riservata alla Segreteria
+          </div>
+        </div>
+
+      </div><!-- /admin-bottom-grid -->
+
+      <!-- Tutti gli utenti sola lettura -->
+      <div class="admin-card">
+        <div class="admin-card__header">
+          <h2 class="admin-card__title">👥 Tutti gli utenti — Sola lettura</h2>
+          <span class="admin-readonly-badge">🔒 Nessuna modifica disponibile</span>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="admin-utenti-table" aria-label="Lista utenti (sola lettura)">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ruolo</th>
+                <th>Stato account</th>
+                <th>Iscrizioni</th>
+                <th>Azioni</th>
+              </tr>
+            </thead>
+            <tbody id="admin-utenti-tbody"><!-- JS --></tbody>
+          </table>
+        </div>
+
+        <div class="admin-utenti-note">
+          🔒 Eliminazione utenti, approvazioni e modifiche riservate alla Segreteria
+        </div>
+      </div>
+
+    </div><!-- /dashboard -->
+
+
+    <!-- =====================================================
+         SEZIONI SOLA LETTURA
+         ===================================================== -->
+
+    <div data-section="utenti" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Utenti <span style="font-size:var(--text-sm);font-weight:400;color:var(--color-text-muted);">— Sola lettura</span></h1>
+      </div>
+      <div class="admin-card">
+        <div style="overflow-x:auto;">
+          <table class="admin-utenti-table">
+            <thead>
+              <tr><th>Nome</th><th>Email</th><th>Ruolo</th><th>Stato</th><th>Iscrizioni</th><th>Azioni</th></tr>
+            </thead>
+            <tbody id="admin-utenti-tbody-2"><!-- popolato da renderUtenti() sulla dashboard --></tbody>
+          </table>
+        </div>
+        <div class="admin-utenti-note">🔒 Eliminazione utenti e modifiche riservate alla Segreteria</div>
+      </div>
+    </div>
+
+    <div data-section="eventi" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Eventi <span style="font-size:var(--text-sm);font-weight:400;color:var(--color-text-muted);">— Sola lettura</span></h1>
+      </div>
+      <div class="admin-card">
+        <div id="admin-eventi-list-2" class="admin-eventi-list"><!-- JS --></div>
+        <div class="admin-eventi-note">🔒 Modifica eventi riservata alla Segreteria</div>
+      </div>
+    </div>
+
+    <div data-section="iscrizioni" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Iscrizioni <span style="font-size:var(--text-sm);font-weight:400;color:var(--color-text-muted);">— Sola lettura</span></h1>
+      </div>
+      <div class="admin-card">
+        <div id="admin-iscrizioni-content">
+          <div style="text-align:center;padding:2rem;color:var(--color-text-muted);">Caricamento...</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-section="statistiche" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">Statistiche <span style="font-size:var(--text-sm);font-weight:400;color:var(--color-text-muted);">— Sola lettura</span></h1>
+      </div>
+      <div id="admin-kpi-grid-2" class="admin-kpi-grid" style="margin-bottom:0"><!-- stesse KPI --></div>
+    </div>
+
+    <!-- SEZIONE IMPOSTAZIONI — spostata da segreteria -->
+    <div data-section="impostazioni" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">⚙️ <em>Impostazioni</em> sistema</h1>
+      </div>
+
+      <!-- Anno scolastico -->
+      <div class="admin-card" style="margin-bottom:var(--space-5);">
+        <div class="admin-card__header">
+          <h2 class="admin-card__title">📅 Anno scolastico</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;">
+          <div>
+            <div style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-1);">Anno corrente:</div>
+            <div id="anno-display" style="font-size:var(--text-3xl);font-weight:900;color:var(--color-primary);">—</div>
+            <div id="anno-override-status" style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-1);"></div>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin-bottom:var(--space-2);">Override manuale</div>
+            <div style="display:flex;gap:var(--space-2);">
+              <input type="text" id="anno-override-input" placeholder="es. 2027–28"
+                style="padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;flex:1;" />
+              <button class="seg-btn-primary" onclick="salvaAnnoOverride()">Salva</button>
+              <button class="seg-btn-secondary" onclick="resetAnnoOverride()">Reset auto</button>
+            </div>
+            <div id="anno-msg" style="display:none;margin-top:var(--space-2);font-size:var(--text-sm);font-weight:600;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dati istituto modificabili -->
+      <div class="admin-card" style="margin-bottom:var(--space-5);">
+        <div class="admin-card__header">
+          <h2 class="admin-card__title">🏫 Dati istituto</h2>
+          <span class="admin-action-badge">✏ Modificabile</span>
+        </div>
+        <div id="istituto-msg" style="display:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);margin-bottom:var(--space-3);font-size:var(--text-sm);font-weight:600;"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-4);">
+          <div>
+            <label style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-bottom:4px;">Nome istituto</label>
+            <input id="ist-nome" type="text" value="ITIS &quot;G. Cardano&quot;" style="width:100%;padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-bottom:4px;">Indirizzo</label>
+            <input id="ist-indirizzo" type="text" value="Via Verdi 19, 27100 Pavia (PV)" style="width:100%;padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-bottom:4px;">Città</label>
+            <input id="ist-citta" type="text" value="Pavia" style="width:100%;padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-bottom:4px;">Telefono</label>
+            <input id="ist-tel" type="text" value="0382.302801" style="width:100%;padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-bottom:4px;">Email</label>
+            <input id="ist-email" type="email" value="direzione@itiscardanopv.edu.it" style="width:100%;padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-bottom:4px;">Sito web</label>
+            <input id="ist-sito" type="url" value="https://www.itiscardanopv.edu.it/" style="width:100%;padding:var(--space-2) var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-family:var(--font-sans);outline:none;" />
+          </div>
+        </div>
+        <button class="seg-btn-primary" onclick="salvaIstituto()">💾 Salva dati istituto</button>
+      </div>
+    </div>
+
+    <div data-section="segreteria" style="display:none">
+      <div class="seg-page-header">
+        <h1 class="seg-page-title">🔑 Gestione <em>Segreteria</em></h1>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-1);">
+          Unica azione disponibile per l'Admin
+        </p>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card__header">
+          <h2 class="admin-card__title">Gestione ruolo Segreteria</h2>
+          <span class="admin-action-badge">✏ Azione disponibile</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="seg-mgmt-table">
+            <thead>
+              <tr><th>Utente</th><th>Ruolo attuale</th><th>Stato</th><th>Azione Admin</th></tr>
+            </thead>
+            <tbody id="seg-mgmt-tbody-2"><!-- stesso contenuto --></tbody>
+          </table>
+        </div>
+        <div class="admin-note">
+          ℹ Solo utenti Staff/Prof. possono essere promossi a Segreteria.
+          Il ruolo Admin non può essere assegnato da qui.
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+</div><!-- /seg-layout -->
+
+<script src="js/api-client.js"></script>
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

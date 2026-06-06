@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Scanner QR — ITIS "G. Cardano", Pavia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/scanner.css" />
+</head>
+<body>
+
+<div class="scanner-page">
+
+  <!-- =========================================================
+       TOPBAR
+       ========================================================= -->
+  <header class="scan-topbar" role="banner">
+
+    <div class="scan-topbar__left">
+      <!-- Hamburger mobile -->
+      <button id="sidebar-toggle" aria-label="Apri menu"
+        style="display:none;background:none;border:none;cursor:pointer;padding:var(--space-2);margin-right:var(--space-1);">
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;margin:3px 0"></span>
+      </button>
+
+      <a href="index.html" style="display:flex;align-items:center;gap:var(--space-3);" aria-label="ITIS G. Cardano">
+        <div class="itis-logo itis-logo--sm">
+          <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano"' />
+        </div>
+        <div class="scan-topbar__brand">
+          <span class="scan-topbar__name">ITIS "G. Cardano" — Pavia</span>
+          <span class="scan-topbar__sub">Pannello Staff / Professore</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="scan-topbar__right">
+      <span class="scan-evento-badge">📅 Cardano Day — 24 Nov 2026</span>
+      <span class="scan-role-badge">STAFF</span>
+      <div class="scan-topbar__avatar" id="topbar-avatar" aria-hidden="true">LC</div>
+      <span class="scan-topbar__user-name" id="topbar-user-name">Luca Conti</span>
+      <button class="scan-topbar__logout"
+        onclick="if(confirm('Vuoi uscire?'))window.location.href='index.html'">
+        Esci
+      </button>
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+  <aside class="scan-sidebar" role="navigation" aria-label="Menu scanner">
+
+    <!-- Evento in corso -->
+    <div class="scan-sidebar__section">
+      <div class="scan-sidebar__label">Evento in corso</div>
+      <div class="scan-evento-info">
+        <div class="scan-evento-info__title">Cardano Day</div>
+        <div class="scan-evento-info__date">24 Novembre 2026</div>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="scan-sidebar__section">
+      <div class="scan-sidebar__label">Menu</div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <button class="scan-nav-link scan-nav-link--active" data-nav="scanner">
+          <span style="font-size:var(--text-base);width:20px;text-align:center;">📱</span>
+          Scanner QR
+        </button>
+        <button class="scan-nav-link" data-nav="studenti">
+          <span style="font-size:var(--text-base);width:20px;text-align:center;">👥</span>
+          Elenco studenti
+        </button>
+      </div>
+    </div>
+
+    <!-- Fasi correnti -->
+    <div class="scan-sidebar__section">
+      <div class="scan-sidebar__label">Fase corrente</div>
+      <div id="fasi-list" class="scan-fasi">
+        <!-- JS -->
+      </div>
+    </div>
+
+    <!-- Selezione laboratorio -->
+    <div class="scan-sidebar__section">
+      <div class="scan-sidebar__label">Laboratorio</div>
+      <select id="lab-select" class="scan-lab-select" aria-label="Seleziona laboratorio">
+        <option value="">Tutti i lab</option>
+        <option value="I1">Informatica I1</option>
+        <option value="I2">Informatica I2</option>
+        <option value="E1">Elettronica E1</option>
+        <option value="M1">Meccanica M1</option>
+        <option value="C1">Chimica C1</option>
+        <option value="L1">Liceo L1</option>
+      </select>
+    </div>
+
+    <!-- Blocchi segreteria (solo segreteria/admin) -->
+    <div class="scan-sidebar__section" id="blocchi-segreteria">
+      <!-- Popolato da JS se segreteria -->
+    </div>
+
+  </aside>
+
+
+  <!-- =========================================================
+       CONTENUTO PRINCIPALE
+       ========================================================= -->
+  <main class="scan-main" role="main">
+
+
+    <!-- =====================================================
+         SEZIONE: SCANNER QR
+         ===================================================== -->
+    <div data-section="scanner">
+
+      <h1 id="scanner-title" class="scan-main__title">
+        Scanner QR — <em>Firma 1 · Entrata</em>
+      </h1>
+      <p class="scan-main__sub" id="scanner-sub">Ingresso principale</p>
+
+      <!-- 4 TAB FIRME -->
+      <div id="firme-tabs" class="firme-tabs" role="tablist" aria-label="Selezione firma">
+        <!-- Popolato da JS -->
+      </div>
+
+      <!-- Griglia scanner + risultato -->
+      <div class="scan-grid">
+
+        <!-- Fotocamera -->
+        <div class="camera-box">
+          <div class="camera-box__header">
+            <div class="camera-box__title">
+              <span aria-hidden="true">📷</span> Fotocamera
+            </div>
+            <div class="scanner-status scanner-status--active" id="scanner-status">
+              <div class="scanner-status__dot" aria-hidden="true"></div>
+              Scanner attivo
+            </div>
+          </div>
+
+          <!-- Viewport camera -->
+          <div class="camera-viewport" id="camera-viewport">
+
+            <!-- In produzione: <video> element per stream fotocamera -->
+            <!-- <video id="camera-stream" autoplay playsinline muted></video> -->
+
+            <!-- Mirino QR -->
+            <div class="qr-viewfinder" aria-hidden="true">
+              <div class="qr-viewfinder__corner qr-viewfinder__corner--tl"></div>
+              <div class="qr-viewfinder__corner qr-viewfinder__corner--tr"></div>
+              <div class="qr-viewfinder__corner qr-viewfinder__corner--bl"></div>
+              <div class="qr-viewfinder__corner qr-viewfinder__corner--br"></div>
+              <div class="qr-scan-line"></div>
+            </div>
+
+            <span class="camera-hint">Inquadra il QR code dello studente</span>
+
+            <!-- Pulsante demo scansione (solo per test — rimuovere in produzione) -->
+            <button id="btn-demo-scan"
+              style="
+                position:absolute;
+                bottom:var(--space-4);
+                right:var(--space-4);
+                padding:var(--space-2) var(--space-3);
+                background:rgba(232,80,10,0.8);
+                color:#fff;
+                border:none;
+                border-radius:var(--radius-md);
+                font-size:var(--text-xs);
+                font-weight:700;
+                cursor:pointer;
+                backdrop-filter:blur(4px);
+              "
+              title="Solo per demo — simula scansione QR"
+            >
+              ▶ Demo scan
+            </button>
+
+          </div>
+
+          <!-- Input manuale -->
+          <div class="camera-manual">
+            <div class="camera-manual__label">Oppure inserisci manualmente il codice:</div>
+            <div class="camera-manual__row">
+              <input
+                type="text"
+                id="manual-input"
+                class="camera-manual__input"
+                placeholder="Es. a3f8c2d1e6b4..."
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Inserisci codice QR manualmente"
+              />
+              <button id="btn-verifica" class="btn-verifica">Verifica</button>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Risultato scansione -->
+        <div id="result-box" class="result-box result-box--waiting" role="region" aria-live="polite" aria-label="Risultato scansione">
+          <!-- JS -->
+        </div>
+
+      </div><!-- /scan-grid -->
+
+    </div><!-- /scanner -->
+
+
+    <!-- =====================================================
+         SEZIONE: ELENCO STUDENTI
+         ===================================================== -->
+    <div data-section="studenti" style="display:none">
+
+      <h1 class="scan-main__title">Elenco studenti — <em>Open Day</em></h1>
+      <p class="scan-main__sub">Visualizzazione sola lettura · 18 Novembre 2026</p>
+
+      <div class="studenti-card">
+
+        <div class="studenti-card__header">
+          <div class="studenti-card__title" id="studenti-title">
+            Elenco studenti — Elettronica E1 (Turno 1)
+          </div>
+          <div class="studenti-filters">
+            <input
+              type="text"
+              id="studenti-search"
+              class="studenti-search"
+              placeholder="🔍 Cerca studente..."
+              aria-label="Cerca studente per nome o scuola"
+            />
+            <select class="studenti-filter-select" aria-label="Filtra per laboratorio">
+              <option>Elettronica</option>
+              <option>Informatica</option>
+              <option>Meccanica</option>
+              <option>Chimica</option>
+              <option>Liceo Sc. Appl.</option>
+            </select>
+            <select class="studenti-filter-select" aria-label="Filtra per aula">
+              <option>E1</option>
+              <option>E2</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="studenti-table" aria-label="Elenco studenti con firme">
+            <thead>
+              <tr>
+                <th>Studente</th>
+                <th>Scuola</th>
+                <th>Lab T1</th>
+                <th>Lab T2</th>
+                <th>F1 Entrata</th>
+                <th>F2 Lab T1</th>
+                <th>F3 Lab T2</th>
+                <th>F4 Uscita</th>
+              </tr>
+            </thead>
+            <tbody id="studenti-tbody">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="studenti-footer" id="studenti-footer">
+          <!-- JS -->
+        </div>
+
+      </div>
+
+    </div><!-- /studenti -->
+
+
+  </main><!-- /scan-main -->
+
+
+  <!-- =========================================================
+       MOBILE BOTTOM NAVBAR
+       ========================================================= -->
+  <nav class="mobile-bottom-nav" role="navigation" aria-label="Navigazione mobile">
+    <button class="mobile-nav-item mobile-nav-item--active" data-nav="scanner">
+      <span class="mobile-nav-item__icon" aria-hidden="true">📱</span>
+      Scanner
+    </button>
+    <button class="mobile-nav-item" data-nav="studenti">
+      <span class="mobile-nav-item__icon" aria-hidden="true">👥</span>
+      Studenti
+    </button>
+    <button class="mobile-nav-item" onclick="alert('Riepilogo presenze')">
+      <span class="mobile-nav-item__icon" aria-hidden="true">📊</span>
+      Riepilogo
+    </button>
+    <button class="mobile-nav-item" onclick="alert('Impostazioni')">
+      <span class="mobile-nav-item__icon" aria-hidden="true">⚙️</span>
+      Impost.
+    </button>
+  </nav>
+
+</div><!-- /scanner-page -->
+
+<script src="js/api-client.js"></script>
+<script src="js/config.js"></script>
+<script src="js/scanner.js"></script>
+</body>
+</html>
