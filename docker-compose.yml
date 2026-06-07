@@ -1,0 +1,53 @@
+# ============================================================
+# docker-compose.yml — Sistema Cardano Day
+# Se vuoi ricreare i container da zero
+# ============================================================
+
+version: '3.8'
+
+services:
+
+  apache-php:
+    build: .
+    container_name: apache
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    networks:
+      - cardano-net
+    depends_on:
+      - mysql
+    command: >
+      bash -c "
+        a2enmod rewrite headers &&
+        apache2-foreground
+      "
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: RootSecure2026!
+      MYSQL_DATABASE: cardano_day
+      MYSQL_USER: cardano_user
+      MYSQL_PASSWORD: CardanoSecure2026!
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    networks:
+      - cardano-net
+
+networks:
+  cardano-net:
+    driver: bridge
+
+volumes:
+  mysql_data:

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Registrazione Staff — ITIS "G. Cardano", Pavia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- Logo -->
+  <div class="auth-header">
+    <div class="itis-logo itis-logo--lg itis-logo--on-dark">
+      <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+    </div>
+    <div style="text-align:center">
+      <div class="auth-header__name">ITIS "G. Cardano" — Pavia</div>
+      <div class="auth-header__sub">
+        <span style="background:rgba(232,80,10,0.2);border:1px solid rgba(232,80,10,0.4);border-radius:99px;padding:1px 10px;font-size:10px;color:rgba(255,150,80,0.95);font-weight:700;letter-spacing:.05em;text-transform:uppercase;">🏫 Personale scolastico</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card form — più larga per la registrazione -->
+  <div class="auth-card auth-card--wide">
+
+    <h1 class="auth-card__title" style="text-align:center;">Richiesta accesso</h1>
+    <p class="auth-card__subtitle" style="text-align:center;">
+      Per Staff e Professori dell'ITIS "G. Cardano"
+    </p>
+
+    <!-- Steps info -->
+    <div style="
+      display:flex;flex-direction:column;gap:var(--space-3);
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.07);
+      border-radius:var(--radius-lg);
+      padding:var(--space-4);
+      margin-bottom:var(--space-5);
+    ">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);">
+        <div style="display:flex;gap:var(--space-2);align-items:flex-start;">
+          <span style="width:20px;height:20px;border-radius:50%;background:var(--color-primary);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</span>
+          <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);line-height:1.5;"><strong style="color:rgba(255,255,255,0.8);display:block;">Inserisci i tuoi dati</strong>Email @itiscardanopv.edu.it e password</div>
+        </div>
+        <div style="display:flex;gap:var(--space-2);align-items:flex-start;">
+          <span style="width:20px;height:20px;border-radius:50%;background:var(--color-primary);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</span>
+          <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);line-height:1.5;"><strong style="color:rgba(255,255,255,0.8);display:block;">Richiesta alla segreteria</strong>Approverà o rifiuterà</div>
+        </div>
+        <div style="display:flex;gap:var(--space-2);align-items:flex-start;">
+          <span style="width:20px;height:20px;border-radius:50%;background:var(--color-primary);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</span>
+          <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);line-height:1.5;"><strong style="color:rgba(255,255,255,0.8);display:block;">Email di conferma</strong>Quando attivato</div>
+        </div>
+        <div style="display:flex;gap:var(--space-2);align-items:flex-start;">
+          <span style="width:20px;height:20px;border-radius:50%;background:var(--color-primary);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</span>
+          <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);line-height:1.5;"><strong style="color:rgba(255,255,255,0.8);display:block;">Accedi al sistema</strong>Scanner QR e studenti</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert errore -->
+    <div id="reg-alert" class="alert alert--error" role="alert" aria-live="polite" style="display:none"></div>
+
+    <form id="staff-reg-form" novalidate>
+
+      <!-- Tab Staff / Professore -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1.5px solid rgba(255,255,255,0.12);border-radius:var(--radius-md);overflow:hidden;margin-bottom:var(--space-3);">
+        <button type="button" class="staff-tab staff-tab--active" data-tipo="staff"
+          style="padding:var(--space-3);text-align:center;font-size:var(--text-sm);font-weight:600;border:none;cursor:pointer;background:rgba(255,255,255,0.15);color:#fff;font-family:var(--font-sans);transition:background .15s,color .15s;">
+          🧑‍🏫 Staff
+        </button>
+        <button type="button" class="staff-tab" data-tipo="professore"
+          style="padding:var(--space-3);text-align:center;font-size:var(--text-sm);font-weight:600;border:none;cursor:pointer;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.4);font-family:var(--font-sans);transition:background .15s,color .15s;">
+          📚 Professore
+        </button>
+      </div>
+
+      <!-- Feedback ruolo selezionato -->
+      <div id="ruolo-selezionato-feedback"
+        style="font-size:var(--text-xs);color:rgba(255,150,80,0.85);font-weight:600;margin-bottom:var(--space-5);padding:var(--space-2) var(--space-3);background:rgba(232,80,10,0.10);border-radius:var(--radius-md);border:1px solid rgba(232,80,10,0.2);">
+        🧑‍🏫 Stai richiedendo accesso come Staff
+      </div>
+
+      <!-- Nome + Cognome -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="staff-nome">Nome *</label>
+          <input type="text" id="staff-nome" class="form-input" placeholder="Luca" autocomplete="given-name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="staff-cognome">Cognome *</label>
+          <input type="text" id="staff-cognome" class="form-input" placeholder="Conti" autocomplete="family-name" required />
+        </div>
+      </div>
+
+      <!-- Email istituzionale split -->
+      <div class="form-group">
+        <label class="form-label" for="staff-username">
+          Email istituzionale *
+          <span style="font-size:10px;color:var(--color-primary-light);text-transform:none;letter-spacing:0;font-weight:700;margin-left:4px;">SOLO @ITISCARDANOPV.EDU.IT</span>
+        </label>
+        <div id="email-split" style="
+          display:flex;align-items:stretch;
+          border:1.5px solid rgba(255,255,255,0.12);
+          border-radius:var(--radius-md);overflow:hidden;
+          transition:border-color .15s;
+        ">
+          <input type="text" id="staff-username" class="form-input"
+            placeholder="l.conti"
+            style="border:none;border-radius:0;flex:1;background:rgba(255,255,255,0.07);min-width:0;"
+            autocomplete="off" spellcheck="false" required />
+          <span style="
+            padding:var(--space-3) var(--space-3);
+            background:rgba(255,255,255,0.04);
+            border-left:1px solid rgba(255,255,255,0.1);
+            font-size:var(--text-sm);font-weight:600;
+            color:rgba(255,255,255,0.35);
+            white-space:nowrap;display:flex;align-items:center;
+          ">@itiscardanopv.edu.it</span>
+        </div>
+        <div id="email-feedback" style="font-size:var(--text-xs);margin-top:4px;"></div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label class="form-label" for="staff-password">
+          Password *
+          <span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:none;letter-spacing:0;font-weight:400;">(min. 8 caratteri)</span>
+        </label>
+        <div class="form-input-wrap">
+          <input type="password" id="staff-password" class="form-input"
+            placeholder="••••••••••••" autocomplete="new-password" required />
+          <span class="form-input-icon" data-toggle-pwd="staff-password"
+            role="button" tabindex="0" aria-label="Mostra/nascondi password">👁</span>
+        </div>
+        <div class="password-strength">
+          <div class="password-strength__bar">
+            <div id="pwd-bar" class="password-strength__fill"></div>
+          </div>
+          <span id="pwd-label" class="password-strength__label"></span>
+        </div>
+      </div>
+
+      <!-- Conferma password -->
+      <div class="form-group">
+        <label class="form-label" for="staff-password-confirm">Conferma password *</label>
+        <div class="form-input-wrap">
+          <input type="password" id="staff-password-confirm" class="form-input"
+            placeholder="••••••••••••" autocomplete="new-password" required />
+          <span class="form-input-icon" data-toggle-pwd="staff-password-confirm"
+            role="button" tabindex="0" aria-label="Mostra/nascondi conferma">👁</span>
+        </div>
+        <span id="pwd-match" style="font-size:var(--text-xs);margin-top:4px;display:block;"></span>
+      </div>
+
+      <!-- Nota approvazione — stile neutro bianco -->
+      <div style="
+        background:rgba(255,255,255,0.06);
+        border:1px solid rgba(255,255,255,0.12);
+        border-radius:var(--radius-md);
+        padding:var(--space-3) var(--space-4);
+        margin-bottom:var(--space-4);
+        font-size:var(--text-xs);
+        color:rgba(255,255,255,0.65);
+        line-height:1.6;
+        display:flex;gap:var(--space-2);align-items:flex-start;
+      ">
+        <span>ℹ</span>
+        <span>Il tuo account non sarà attivo immediatamente. La segreteria dovrà approvare la tua richiesta. Riceverai una email di conferma all'indirizzo istituzionale indicato.</span>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" id="staff-reg-submit" class="btn-submit">
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-text">✉ INVIA RICHIESTA DI ACCESSO</span>
+      </button>
+
+    </form>
+
+    <div class="form-footer">
+      Hai già un account? <span style="color:rgba(255,255,255,0.4);">Accedi dalla pagina dedicata</span>
+    </div>
+
+    <!-- Box successo -->
+    <div id="success-box" style="display:none;background:rgba(217,119,6,0.1);border:1px solid rgba(217,119,6,0.3);border-radius:var(--radius-xl);padding:var(--space-6);text-align:center;margin-top:var(--space-5);">
+      <div style="font-size:2.5rem;margin-bottom:var(--space-3);" aria-hidden="true">⏳</div>
+      <div style="font-size:var(--text-lg);font-weight:700;color:rgba(217,119,6,0.9);margin-bottom:var(--space-2);">Richiesta inviata!</div>
+      <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.5);line-height:1.7;">
+        La segreteria ha ricevuto la tua richiesta e ti contatterà a:<br>
+        <strong id="success-email" style="color:var(--color-primary-light);">—</strong><br><br>
+        Di solito l'approvazione avviene entro 24 ore.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="auth-back">
+    <a href="index.html">← Torna alla home</a>
+  </div>
+
+</div>
+
+<script src="js/api-client.js"></script>
+<script src="js/config.js"></script>
+<script src="js/registrazione-staff.js"></script>
+</body>
+</html>

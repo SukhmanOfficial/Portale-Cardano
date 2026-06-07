@@ -1,0 +1,34 @@
+# ============================================================
+# .htaccess — Sistema Cardano Day
+# Apache su Docker / Ubuntu Server
+# ============================================================
+
+Options -Indexes
+
+# --- Passa header Authorization al PHP ---
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+# --- Proteggi file sensibili ---
+<FilesMatch "\.(env|log|sql|sh|bak|git)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# --- Headers sicurezza ---
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# --- Cache browser ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType text/css   "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+</IfModule>
+
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html

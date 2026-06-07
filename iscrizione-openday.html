@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Iscrizione Open Day — Sistema Cardano Day, ITIS G. Cardano Pavia" />
+  <title>Iscrizione Open Day — ITIS G. Cardano, Pavia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/logo.css" />
+  <link rel="stylesheet" href="css/iscrizione.css" />
+</head>
+<body>
+
+<!-- =========================================================
+     TOPBAR
+     ========================================================= -->
+<header class="iscrizione-topbar">
+  <a href="index.html" class="iscrizione-topbar__brand" aria-label="ITIS G. Cardano — Home">
+    <div class="itis-logo itis-logo--sm">
+      <img src="assets/logo.jpg" alt='Logo ITIS "G. Cardano" — Pavia' />
+    </div>
+    <div>
+      <div class="iscrizione-topbar__name" data-config="istituto.nome_lungo"></div>
+      <div class="iscrizione-topbar__sub">Iscrizione Open Day</div>
+    </div>
+  </a>
+  <div class="iscrizione-topbar__user">
+    <span class="iscrizione-topbar__user-name">Mario Rossi</span>
+    <div class="iscrizione-topbar__avatar" aria-hidden="true">MR</div>
+  </div>
+</header>
+
+
+<!-- =========================================================
+     CONTENUTO PAGINA
+     ========================================================= -->
+<div style="padding: 2rem var(--space-6); max-width: 1100px; margin: 0 auto;">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Percorso di navigazione">
+    <a href="area-personale.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <a href="area-personale.html">Area personale</a>
+    <span class="breadcrumb__sep" aria-hidden="true">›</span>
+    <span class="breadcrumb__current">Nuova iscrizione</span>
+  </nav>
+
+  <!-- Titolo -->
+  <div style="margin-bottom: var(--space-6);">
+    <h1 style="font-size: var(--text-3xl); font-weight: var(--fw-black); letter-spacing: -0.02em; color: var(--color-text);">
+      Iscrizione <span style="color: var(--color-primary);">Open Day</span>
+    </h1>
+    <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-1);">
+      Scegli il percorso più adatto per tuo figlio
+    </p>
+  </div>
+
+  <!-- Stepper -->
+  <div id="iscrizione-stepper" class="iscrizione-stepper" role="list" aria-label="Avanzamento iscrizione">
+    <!-- Popolato da JS -->
+  </div>
+
+  <!-- Layout con sidebar -->
+  <div class="iscrizione-layout">
+
+    <!-- Colonna principale -->
+    <div class="iscrizione-main">
+
+      <!-- Evento selezionato (sempre visibile) -->
+      <div class="evento-selezionato" role="region" aria-label="Evento selezionato">
+        <div class="evento-selezionato__date" aria-hidden="true">
+          <span class="evento-selezionato__date-day">18</span>
+          <span class="evento-selezionato__date-month">NOV</span>
+        </div>
+        <div class="evento-selezionato__info">
+          <div class="evento-selezionato__title">Open Day — Novembre 2026</div>
+          <div class="evento-selezionato__sub">ITIS G. Cardano, Pavia · Giornata orientamento</div>
+          <div class="evento-selezionato__posti">● 87 posti ancora disponibili</div>
+        </div>
+        <a href="index.html#eventi" class="evento-selezionato__change" aria-label="Cambia evento">
+          Cambia evento
+        </a>
+      </div>
+
+
+      <!-- ===================================================
+           STEP 2 — Figlio e percorso
+           =================================================== -->
+      <div data-step="2" style="display:none">
+
+        <!-- Sezione 1: Seleziona figlio -->
+        <div class="step-section">
+          <div class="step-section__header">
+            <div class="step-section__num" aria-hidden="true">1</div>
+            <h2 class="step-section__title">Seleziona il figlio</h2>
+          </div>
+          <div id="figli-select-grid" class="figli-select-grid" role="radiogroup" aria-label="Seleziona il figlio da iscrivere">
+            <!-- Popolato da JS -->
+          </div>
+        </div>
+
+        <!-- Sezione 2: Scegli percorso -->
+        <div class="step-section">
+          <div class="step-section__header">
+            <div class="step-section__num" aria-hidden="true">2</div>
+            <h2 class="step-section__title">Scegli il percorso di orientamento</h2>
+          </div>
+
+          <div id="percorsi-grid" class="percorsi-grid" role="radiogroup" aria-label="Scegli il percorso">
+            <!-- Popolato da JS -->
+          </div>
+
+          <!-- Nota gruppo automatico -->
+          <div class="gruppo-auto-note" role="note">
+            <span class="gruppo-auto-note__icon" aria-hidden="true">ℹ️</span>
+            <span>
+              Il gruppo esatto (es. M1, L2) viene assegnato dalla segreteria dopo la chiusura delle iscrizioni.
+              Riceverai una email con il gruppo assegnato, l'orario e il QR code.
+            </span>
+          </div>
+        </div>
+
+        <!-- Navigazione step -->
+        <div class="step-nav">
+          <button class="btn-step-back" onclick="window.location.href='area-personale.html'">
+            ← Torna indietro
+          </button>
+          <button id="btn-step-next" class="btn-step-confirm" disabled aria-disabled="true">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-label">Continua al riepilogo →</span>
+          </button>
+        </div>
+
+        <p class="iscrizione-footer-note">
+          Riceverai una email di conferma con il QR Code all'indirizzo mario.rossi@email.it<br>
+          Puoi annullare l'iscrizione entro il 10 novembre ore 23:59
+        </p>
+
+      </div><!-- /step 2 -->
+
+
+      <!-- ===================================================
+           STEP 3 — Riepilogo e conferma
+           =================================================== -->
+      <div data-step="3" style="display:none">
+
+        <div class="riepilogo-card">
+          <div class="riepilogo-card__title">
+            📋 Riepilogo iscrizione
+          </div>
+          <div id="riepilogo-rows">
+            <!-- Popolato da JS -->
+          </div>
+        </div>
+
+        <!-- Navigazione step -->
+        <div class="step-nav">
+          <button id="btn-back-3" class="btn-step-back">← Torna indietro</button>
+          <button id="btn-step-conferma" class="btn-step-confirm">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-label">✓ CONFERMA ISCRIZIONE</span>
+          </button>
+        </div>
+
+        <p class="iscrizione-footer-note">
+          Riceverai una email di conferma con il QR Code all'indirizzo mario.rossi@email.it<br>
+          Puoi annullare l'iscrizione entro il 10 novembre ore 23:59
+        </p>
+
+      </div><!-- /step 3 -->
+
+
+      <!-- ===================================================
+           STEP 4 — QR Code / Conferma
+           =================================================== -->
+      <div data-step="4" style="display:none">
+
+        <div class="step-section">
+          <div class="conferma-wrap">
+
+            <span class="conferma-icon" aria-hidden="true">✅</span>
+            <h2 class="conferma-title">Iscrizione confermata!</h2>
+            <p class="conferma-subtitle">
+              L'iscrizione è stata registrata con successo.
+              Abbiamo inviato il QR code all'indirizzo <strong>mario.rossi@email.it</strong>.
+              Tienilo pronto per il giorno dell'evento.
+            </p>
+
+            <!-- QR preview -->
+            <div class="conferma-qr-box" aria-label="QR code generato">
+              QR CODE
+            </div>
+
+            <!-- Dettagli iscrizione -->
+            <div style="max-width:400px; margin: 0 auto var(--space-6); text-align:left;">
+              <div id="conferma-details"><!-- Popolato da JS --></div>
+            </div>
+
+            <!-- Azioni -->
+            <div class="conferma-actions">
+              <button
+                class="btn-step-confirm"
+                style="max-width:200px;"
+                onclick="window.location.href='area-personale.html#qr'"
+              >
+                ⬇ Scarica QR Code
+              </button>
+              <button
+                style="padding: var(--space-3) var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: var(--fw-semibold); cursor: pointer; color: var(--color-text-secondary);"
+                onclick="window.location.href='area-personale.html'"
+              >
+                Vai all'area personale
+              </button>
+            </div>
+
+            <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--space-2);">
+              Puoi scaricare il QR code in qualsiasi momento dalla tua area personale
+            </p>
+
+          </div>
+        </div>
+
+      </div><!-- /step 4 -->
+
+    </div><!-- /iscrizione-main -->
+
+
+    <!-- ===================================================
+         SIDEBAR RIEPILOGO
+         =================================================== -->
+    <aside class="iscrizione-sidebar" aria-label="Riepilogo iscrizione">
+      <div class="sidebar-riepilogo">
+        <div class="sidebar-riepilogo__title">Riepilogo</div>
+        <div id="sidebar-riepilogo-rows">
+          <!-- Popolato da JS -->
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /iscrizione-layout -->
+
+</div><!-- /container -->
+
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+<script src="js/api-client.js"></script>
+<script src="js/config.js"></script>
+<script src="js/iscrizione-openday.js"></script>
+</body>
+</html>
